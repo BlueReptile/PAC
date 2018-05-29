@@ -8,9 +8,6 @@ module Handler.Admin where
 
 import Import
 import Database.Persist.Postgresql
-import Text.Julius
-import Text.Lucius
-
 
 -- areq -> required
 -- textField -> campo texto
@@ -20,7 +17,7 @@ import Text.Lucius
 formAdmin :: Form Admin
 formAdmin = renderDivs $ Admin
         <$> areq textField "login: " Nothing
-        <*> areq textField "pass: " Nothing
+        <*> areq passwordField "pass: " Nothing
 
 getAdminR :: Handler Html
 getAdminR = do
@@ -29,16 +26,14 @@ getAdminR = do
         addStylesheet $ (StaticR css_materialize_css)
         $(whamletFile "templates/admin.hamlet")
         [whamlet|
-         <div class="row">
-          <form class="col s12">
+          <form class="col s18">
             <div class="row">
-             <div class="input-field col s6">
-              <form action=@{AdminR} method=post enctype=#{enctype}>
+             <div class="input-field col s16">
+              <form method=post action=@{AdminR} enctype=#{enctype}>
                 ^{widget}
-                <input type="submit" value="OK">
+              <input class="btn waves-effect waves-light light-blue" type="submit" value="Cadastrar">
         |]
         $(whamletFile "templates/footer.hamlet")
-
 
 
 postAdminR :: Handler Html
@@ -47,15 +42,16 @@ postAdminR = do
     ((res,_),_) <- runFormPost formAdmin
     case res of
         FormSuccess admin -> do
-            tid <- runDB $ insert admin
+            aid <- runDB $ insert admin
             defaultLayout [whamlet|
-                admin #{fromSqlKey tid} inserido com sucesso!
+                Admin #{fromSqlKey aid} inserido com sucesso!
             |]
         _ -> redirect HomeR
 
+
 getADMPerfilR :: AdminId -> Handler Html
-getADMPerfilR tid = do
-    admin <- runDB $ get404 tid
+getADMPerfilR aid = do
+    admin <- runDB $ get404 aid
     defaultLayout $ do
         [whamlet|
             <h1>
@@ -64,8 +60,8 @@ getADMPerfilR tid = do
 
 
 postADMPerfilR :: AdminId -> Handler Html
-postADMPerfilR tid = do
-                     runDB $ delete tid
+postADMPerfilR aid = do
+                     runDB $ delete aid
                      redirect ListaAdminR
 
 getListaAdminR :: Handler Html
@@ -79,16 +75,16 @@ getListaAdminR = do
                 <thead>
                     <tr>
                         <th>
-                            Login
+                            Admins
                         <th>
                 <tbody>
-                    $forall (Entity tid admin) <- admins
+                    $forall (Entity aid admin) <- admins
                         <tr>
                             <td>
-                                <a href=@{ADMPerfilR tid}>
+                                <a href=@{ADMPerfilR aid}>
                                     #{adminLogin admin}
                             <td>
-                                <form action=@{ADMPerfilR tid} method=post>
+                                <form action=@{ADMPerfilR aid} method=post>
                                     <input type="submit" value="Apagar">
         |]
         $(whamletFile "templates/footer.hamlet")
