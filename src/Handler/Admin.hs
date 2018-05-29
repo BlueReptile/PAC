@@ -16,8 +16,8 @@ import Database.Persist.Postgresql
 -- <*> :: Applicative f => f (a -> b) -> f a -> f b
 formAdmin :: Form Admin
 formAdmin = renderDivs $ Admin
-        <$> areq textField "login: " Nothing
-        <*> areq passwordField "pass: " Nothing
+        <$> areq textField "Usuario: " Nothing
+        <*> areq passwordField "Senha: " Nothing
 
 getAdminR :: Handler Html
 getAdminR = do
@@ -26,10 +26,9 @@ getAdminR = do
         addStylesheet $ (StaticR css_materialize_css)
         $(whamletFile "templates/admin.hamlet")
         [whamlet|
-          <form class="col s18">
+          <form class="col s18" form method=post action=@{AdminR} enctype=#{enctype}>
             <div class="row">
              <div class="input-field col s16">
-              <form method=post action=@{AdminR} enctype=#{enctype}>
                 ^{widget}
               <input class="btn waves-effect waves-light light-blue" type="submit" value="Cadastrar">
         |]
