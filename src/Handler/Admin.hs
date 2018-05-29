@@ -19,8 +19,8 @@ import Text.Lucius
 -- <*> :: Applicative f => f (a -> b) -> f a -> f b
 formAdmin :: Form Admin
 formAdmin = renderDivs $ Admin
-        <$> areq textField "Login: " Nothing
-        <*> areq textField "Senha: " Nothing
+        <$> areq textField "login: " Nothing
+        <*> areq textField "pass: " Nothing
 
 getAdminR :: Handler Html
 getAdminR = do
@@ -59,7 +59,7 @@ getADMPerfilR tid = do
     defaultLayout $ do
         [whamlet|
             <h1>
-                admin #{adminLogin admin}
+                ADMIN #{adminLogin admin}
         |]
 
 
@@ -72,6 +72,8 @@ getListaAdminR :: Handler Html
 getListaAdminR = do
     admins <- runDB $ selectList [] [Asc AdminLogin]
     defaultLayout $ do
+        addStylesheet $ (StaticR css_materialize_css)
+        $(whamletFile "templates/admins.hamlet")
         [whamlet|
             <table>
                 <thead>
@@ -89,3 +91,4 @@ getListaAdminR = do
                                 <form action=@{ADMPerfilR tid} method=post>
                                     <input type="submit" value="Apagar">
         |]
+        $(whamletFile "templates/footer.hamlet")
