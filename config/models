@@ -1,0 +1,27 @@
+Admin
+  login       Text
+  pass        Text
+  deriving    Show
+
+Pessoa
+  nome        Text
+  cartao      Int
+  cpf         Text
+  deriving    Show
+
+Sala
+  nome        Text
+  arid        ArduinoId
+  deriving    Show
+
+Arduino
+  name        Text
+  ip          Text
+  deriving    Show
+
+Registro
+  sala        SalaId
+  pessoa      PessoaId
+  datahora    UTCTime
+  entrada     Bool
+  deriving    Show

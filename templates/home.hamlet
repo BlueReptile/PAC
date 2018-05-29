@@ -1,0 +1,13 @@
+<div class="navbar-fixed">
+      <nav>
+        <div class="nav-wrapper light-blue darken-2">
+          <a href=@{StaticR haskellchan_png} class="brand-logo">Logo
+          <ul class="right hide-on-med-and-down">
+            <li class="active"><a href=@{HomeR}> Home</a></li>
+            <li><a href=@{AdminR}> Cadastro de Admins</a></li>
+            <li><a href=@{ListaAdminR}> Lista de Admins</a></li>
+
+
+
+<img src=@{StaticR haskellchan_png} alt="Haskell-chan" style="width:102px;height:221px;center;">
+<img src=@{StaticR haskellchan_png} alt="Haskell-chan" style="width:102px;height:221px;center;">
