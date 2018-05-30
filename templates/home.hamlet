@@ -20,7 +20,7 @@
 
 
 
-
+<main>
 <img src=@{StaticR haskellchan_png} alt="Haskell-chan" style="width:102px;height:221px;">
 <br>
 <img src=@{StaticR haskellchan_png} alt="Haskell-chan" style="width:102px;height:221px;">

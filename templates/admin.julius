@@ -1,0 +1,12 @@
+
+  $('.dropdown-button').dropdown({
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      container: true,
+      coverTrigger: false
+    }
+  );
+
+$(".dropdown-content>li>a").css("color", 'black');
+$(".dropdown-content>li>span").css("color", 'light-blue darken-2');

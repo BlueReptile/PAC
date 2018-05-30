@@ -8,6 +8,8 @@ module Handler.Admin where
 
 import Import
 import Database.Persist.Postgresql
+import Text.Lucius
+import Text.Julius
 
 -- areq -> required
 -- textField -> campo texto
@@ -24,14 +26,15 @@ getAdminR = do
     (widget,enctype) <- generateFormPost formAdmin
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
+        toWidget $(juliusFile "templates/admin.julius")
+        toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/admin.hamlet")
         [whamlet|
          <main>
-          <form class="col s18" form method=post action=@{AdminR} enctype=#{enctype}>
             <div class="row">
-             <div class="input-field col s16">
-                ^{widget}
-              <input class="btn waves-effect waves-light light-blue" type="submit" value="Cadastrar">
+              <form class="col s4" form method=post action=@{AdminR} enctype=#{enctype}>
+                    ^{widget}
+                  <input class="btn waves-effect waves-light light-blue" type="submit" value="Cadastrar">
         |]
         $(whamletFile "templates/footer.hamlet")
 
