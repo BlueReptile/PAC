@@ -26,6 +26,7 @@ getAdminR = do
         addStylesheet $ (StaticR css_materialize_css)
         $(whamletFile "templates/admin.hamlet")
         [whamlet|
+         <main>
           <form class="col s18" form method=post action=@{AdminR} enctype=#{enctype}>
             <div class="row">
              <div class="input-field col s16">
@@ -42,9 +43,14 @@ postAdminR = do
     case res of
         FormSuccess admin -> do
             aid <- runDB $ insert admin
-            defaultLayout [whamlet|
-                Admin #{fromSqlKey aid} inserido com sucesso!
-            |]
+            defaultLayout $ do
+                addStylesheet $ (StaticR css_materialize_css)
+                $(whamletFile "templates/admin.hamlet")
+                [whamlet|
+                 <main>
+                    Admin #{fromSqlKey aid} inserido com sucesso!
+                |]
+                $(whamletFile "templates/footer.hamlet")
         _ -> redirect HomeR
 
 

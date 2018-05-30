@@ -1,13 +1,26 @@
+<head>
+  <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
+
+
 <div class="navbar-fixed">
-      <nav>
+    <nav>
         <div class="nav-wrapper light-blue darken-2">
-          <a href=@{StaticR haskellchan_png} class="brand-logo">Logo
           <ul class="right hide-on-med-and-down">
-            <li class="active"><a href=@{HomeR}> Home</a></li>
-            <li><a href=@{AdminR}> Cadastro de Admins</a></li>
-            <li><a href=@{ListaAdminR}> Lista de Admins</a></li>
+              <li class="active"><a href=@{HomeR}>Home</a></li>
+              <li><a class="dropdown-button" href=@{AdminR} data-target="dropadmins">Admins</a></li>
+              <li class=""><a>Pessoa</a></li>
+              <li class=""><a>Sala</a></li>
+              <li class=""><a>Registros</a></li>
+
+
+<ul id="dropadmins" class="dropdown-content white-text">
+    <li><a href=@{AdminR}>Cadastro de Admins</a></li>
+    <li class="divider"></li>
+    <li><a href=@{ListaAdminR}>Lista de Admins</a></li>
 
 
 
-<img src=@{StaticR haskellchan_png} alt="Haskell-chan" style="width:102px;height:221px;center;">
-<img src=@{StaticR haskellchan_png} alt="Haskell-chan" style="width:102px;height:221px;center;">
+
+<img src=@{StaticR haskellchan_png} alt="Haskell-chan" style="width:102px;height:221px;">
+<br>
+<img src=@{StaticR haskellchan_png} alt="Haskell-chan" style="width:102px;height:221px;">

@@ -8,10 +8,8 @@
               <div class="col l4 offset-l2 s12">
                 <h5 class="white-text">Links</h5>
                 <ul>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 1</a>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 2</a>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 3</a>
-                  <li><a class="grey-text text-lighten-3" href="#!">Link 4</a>
+                  <li><a class="grey-text text-lighten-3" href="#!">Link test</a>
+
         <div class="footer-copyright light-blue darken-3 white-text">
             <div class="container">
             © 2018 Haskell-chan
