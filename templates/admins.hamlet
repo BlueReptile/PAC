@@ -1,8 +1,0 @@
-<div class="navbar-fixed">
-      <nav>
-        <div class="nav-wrapper light-blue darken-2">
-          <a href=@{StaticR haskellchan_png} class="brand-logo">Logo
-          <ul class="right hide-on-med-and-down">
-            <li><a href=@{HomeR}> Home</a></li>
-            <li><a href=@{AdminR}> Cadastro de Admins</a></li>
-            <li class="active"><a href=@{ListaAdminR}> Lista de Admins</a></li>

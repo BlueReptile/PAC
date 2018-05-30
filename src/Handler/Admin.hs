@@ -26,15 +26,18 @@ getAdminR = do
     (widget,enctype) <- generateFormPost formAdmin
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
+        addScript $ (StaticR js_jquery_js)
+        addScript $ (StaticR js_materialize_js)
         toWidget $(juliusFile "templates/admin.julius")
         toWidget $(luciusFile "templates/admin.lucius")
-        $(whamletFile "templates/admin.hamlet")
+        $(whamletFile "templates/header.hamlet")
         [whamlet|
          <main>
             <div class="row">
               <form class="col s4" form method=post action=@{AdminR} enctype=#{enctype}>
                     ^{widget}
-                  <input class="btn waves-effect waves-light light-blue" type="submit" value="Cadastrar">
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
+                        <i class="material-icons right">send</i>
         |]
         $(whamletFile "templates/footer.hamlet")
 
@@ -48,7 +51,11 @@ postAdminR = do
             aid <- runDB $ insert admin
             defaultLayout $ do
                 addStylesheet $ (StaticR css_materialize_css)
-                $(whamletFile "templates/admin.hamlet")
+                addScript $ (StaticR js_jquery_js)
+                addScript $ (StaticR js_materialize_js)
+                toWidget $(juliusFile "templates/admin.julius")
+                toWidget $(luciusFile "templates/admin.lucius")
+                $(whamletFile "templates/header.hamlet")
                 [whamlet|
                  <main>
                     Admin #{fromSqlKey aid} inserido com sucesso!
@@ -61,10 +68,18 @@ getADMPerfilR :: AdminId -> Handler Html
 getADMPerfilR aid = do
     admin <- runDB $ get404 aid
     defaultLayout $ do
+        addStylesheet $ (StaticR css_materialize_css)
+        addScript $ (StaticR js_jquery_js)
+        addScript $ (StaticR js_materialize_js)
+        toWidget $(juliusFile "templates/admin.julius")
+        toWidget $(luciusFile "templates/admin.lucius")
+        $(whamletFile "templates/header.hamlet")
         [whamlet|
+          <main>
             <h1>
                 ADMIN #{adminLogin admin}
         |]
+        $(whamletFile "templates/footer.hamlet")
 
 
 postADMPerfilR :: AdminId -> Handler Html
@@ -77,22 +92,28 @@ getListaAdminR = do
     admins <- runDB $ selectList [] [Asc AdminLogin]
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
-        $(whamletFile "templates/admins.hamlet")
+        addScript $ (StaticR js_jquery_js)
+        addScript $ (StaticR js_materialize_js)
+        toWidget $(juliusFile "templates/admin.julius")
+        toWidget $(luciusFile "templates/admin.lucius")
+        $(whamletFile "templates/header.hamlet")
         [whamlet|
-            <table>
-                <thead>
-                    <tr>
-                        <th>
-                            Admins
-                        <th>
-                <tbody>
-                    $forall (Entity aid admin) <- admins
-                        <tr>
-                            <td>
-                                <a href=@{ADMPerfilR aid}>
-                                    #{adminLogin admin}
-                            <td>
-                                <form action=@{ADMPerfilR aid} method=post>
-                                    <input type="submit" value="Apagar">
+                <main>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>
+                                    Admins
+                                <th>
+                        <tbody>
+                            $forall (Entity aid admin) <- admins
+                                <tr>
+                                 <li class="divider"></li>
+                                    <td>
+                                        <a href=@{ADMPerfilR aid}>
+                                            #{adminLogin admin}
+                                    <td>
+                                        <form action=@{ADMPerfilR aid} method=post>
+                                            <input class="btn waves-effect waves-light" type="submit" value="Apagar">
         |]
         $(whamletFile "templates/footer.hamlet")
