@@ -32,12 +32,17 @@ getAdminR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
-         <main>
-            <div class="row">
-              <form class="col s4" form method=post action=@{AdminR} enctype=#{enctype}>
+        <br>
+        <main>
+         <div class="row">
+          <div class="col s6 offset-s3 valign">
+            <div class="card blue-grey darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">Cadastro de Admin</span>
+                  <form action=@{AdminR} method=post enctype=#{enctype}>
                     ^{widget}
                     <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
-                        <i class="material-icons right">send</i>
+                      <i class="material-icons right">send</i>
         |]
         $(whamletFile "templates/footer.hamlet")
 
