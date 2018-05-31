@@ -20,6 +20,12 @@ formAdmin = renderDivs $ Admin
 
 getLoginPageR :: Handler Html
 getLoginPageR = do
+    maybeId <- lookupSession "ID"
+    idText <- case maybeId of
+        (Just id) -> do
+            return id
+        _ -> do
+            return ""
     (widget,enctype) <- generateFormPost formAdmin
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
