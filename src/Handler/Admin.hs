@@ -23,6 +23,12 @@ formAdmin = renderDivs $ Admin
 
 getAdminR :: Handler Html
 getAdminR = do
+    maybeId <- lookupSession "ID"
+    idText <- case maybeId of
+                (Just id) -> do
+                    return id
+                _ -> do
+                    redirect LoginPageR
     (widget,enctype) <- generateFormPost formAdmin
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
@@ -49,6 +55,12 @@ getAdminR = do
 
 postAdminR :: Handler Html
 postAdminR = do
+    maybeId <- lookupSession "ID"
+    idText <- case maybeId of
+            (Just id) -> do
+                return id
+            _ -> do
+                redirect LoginPageR
     -- LEIO OS PARAMETROS DO FORM
     ((res,_),_) <- runFormPost formAdmin
     case res of
@@ -71,6 +83,12 @@ postAdminR = do
 
 getADMPerfilR :: AdminId -> Handler Html
 getADMPerfilR aid = do
+    maybeId <- lookupSession "ID"
+    idText <- case maybeId of
+            (Just id) -> do
+                return id
+            _ -> do
+                redirect LoginPageR
     admin <- runDB $ get404 aid
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
@@ -89,11 +107,23 @@ getADMPerfilR aid = do
 
 postADMPerfilR :: AdminId -> Handler Html
 postADMPerfilR aid = do
-                     runDB $ delete aid
-                     redirect ListaAdminR
+    maybeId <- lookupSession "ID"
+    idText <- case maybeId of
+            (Just id) -> do
+                return id
+            _ -> do
+                redirect LoginPageR
+    runDB $ delete aid
+    redirect ListaAdminR
 
 getListaAdminR :: Handler Html
 getListaAdminR = do
+    maybeId <- lookupSession "ID"
+    idText <- case maybeId of
+            (Just id) -> do
+                return id
+            _ -> do
+                redirect LoginPageR
     admins <- runDB $ selectList [] [Asc AdminLogin]
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)

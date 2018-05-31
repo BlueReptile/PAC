@@ -1,7 +1,8 @@
 Admin
-  login       Text
-  pass        Text
-  deriving    Show
+  login             Text
+  pass              Text
+  UniqueLogin        login pass
+  deriving          Show
 
 Pessoa
   nome        Text

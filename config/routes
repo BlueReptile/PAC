@@ -8,3 +8,8 @@
 /admin                 AdminR         GET POST
 !/admin/#AdminId       ADMPerfilR     GET POST
 /admin/lista           ListaAdminR    GET
+
+/loginPage             LoginPageR     GET
+/login                 AdminLoginR         POST
+
+/logout                AdminLogoutR        GET
