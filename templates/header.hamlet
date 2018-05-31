@@ -6,12 +6,17 @@
     <nav>
         <div class="nav-wrapper light-blue darken-2">
           <i class="left material-icons" style="font-size: 50px">account_circle</i>
+           <a class="left brand-logo" href=@{HomeR}>#{idText}</a>
           <ul class="right hide-on-med-and-down">
               <li><a href=@{HomeR}>Home</a></li>
               <li><a class="dropdown-button" href=@{AdminR} data-target="dropadmins">Admins</a></li>
               <li class=""><a>Pessoa</a></li>
               <li class=""><a>Sala</a></li>
               <li class=""><a>Registros</a></li>
+              $if idText /= ""
+                <li><a class="left" href=@{AdminLogoutR}>Logout</a></li>
+              $else
+                <li><a class="left" href=@{LoginPageR}>Login</a></li>
 
 
 <ul id="dropadmins" class="dropdown-content white-text">

@@ -13,8 +13,10 @@
               <li class=""><a>Pessoa</a></li>
               <li class=""><a>Sala</a></li>
               <li class=""><a>Registros</a></li>
-              <li><a class="left" href=@{AdminLogoutR}>Logout</a></li>
-
+              $if idText /= ""
+                <li><a class="left" href=@{AdminLogoutR}>Logout</a></li>
+              $else
+                <li><a class="left" href=@{LoginPageR}>Login</a></li>
 
 <ul id="dropadmins" class="dropdown-content white-text">
     <li><a href=@{AdminR}>Cadastro de Admins</a></li>
