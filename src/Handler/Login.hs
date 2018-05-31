@@ -11,7 +11,6 @@ import Network.HTTP.Types.Status
 import Database.Persist.Postgresql
 import Text.Lucius
 import Text.Julius
-import Yesod.Auth.Hardcoded
 
 formAdmin :: Form Admin
 formAdmin = renderDivs $ Admin
@@ -76,7 +75,7 @@ postAdminLoginR = do
                                  toWidget $(luciusFile "templates/admin.lucius")
                                  $(whamletFile "templates/header.hamlet")
                                  [whamlet|
-                                   <main>
+                                   <main style="background-color:red;">
                                      <h1>
                                          USUARIO INVALIDO
                                  |]
