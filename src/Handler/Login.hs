@@ -55,19 +55,32 @@ getLoginPageR = do
 
 postAdminLoginR :: Handler Html
 postAdminLoginR = do
+                 maybeId <- lookupSession "ID"
+                 idText <- case maybeId of
+                         (Just id) -> do
+                             return id
+                         _ -> do
+                             return ""
                  login <- runInputPost $ ireq textField "f1"
                  pass <- runInputPost $ ireq textField "f2"
-            {-
-            ((res,_),_) <- runFormPost formAdmin
-            case res of
-                FormSuccess admin -> do -}
                  maybeAdmin <- runDB $ getBy $ UniqueLogin login pass
                  case maybeAdmin of
                              Just user -> do
                                         setSession "ID" $ login
                                         redirect HomeR
-                             _ -> sendStatusJSON status404 (object ["resp" .= ("Usuario não cadastrado" :: Text)] )
-
+                             _ -> defaultLayout $ do
+                                 addStylesheet $ (StaticR css_materialize_css)
+                                 addScript $ (StaticR js_jquery_js)
+                                 addScript $ (StaticR js_materialize_js)
+                                 toWidget $(juliusFile "templates/admin.julius")
+                                 toWidget $(luciusFile "templates/admin.lucius")
+                                 $(whamletFile "templates/header.hamlet")
+                                 [whamlet|
+                                   <main>
+                                     <h1>
+                                         USUARIO INVALIDO
+                                 |]
+                                 $(whamletFile "templates/footer.hamlet")
 
 getAdminLogoutR :: Handler Html
 getAdminLogoutR = do
