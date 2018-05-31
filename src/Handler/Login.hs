@@ -76,8 +76,9 @@ postAdminLoginR = do
                                  $(whamletFile "templates/header.hamlet")
                                  [whamlet|
                                    <main style="background-color:red;">
-                                     <h1>
-                                         USUARIO INVALIDO
+                                     <img src=@{StaticR sirene_gif} alt="ALERTA" class="center" style="width:200px;height:200px;">
+                                     <h1 class="center"> USUARIO INVALIDO
+                                     
                                  |]
                                  $(whamletFile "templates/footer.hamlet")
 
