@@ -58,7 +58,7 @@ postAdminLoginR = do
                  maybeAdmin <- runDB $ getBy $ UniqueLogin login pass
                  case maybeAdmin of
                              Just user -> do
-                                        setSession "ID" $ pack $ show $ fromSqlKey $ entityKey user
+                                        setSession "ID" $ login
                                         redirect HomeR
                              _ -> sendStatusJSON status404 (object ["resp" .= ("Usuario não cadastrado" :: Text)] )
 

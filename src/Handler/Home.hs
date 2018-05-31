@@ -11,6 +11,12 @@ import Text.Lucius
 
 getHomeR :: Handler Html
 getHomeR = do
+    maybeId <- lookupSession "ID"
+    idText <- case maybeId of
+            (Just id) -> do
+                return id
+            _ -> do
+                return ""
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
