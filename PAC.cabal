@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: e3c698c559f2ee5b7e14368e987a49fe3ea1dddc14d21b8e0a46c75c6db1dbc4
+-- hash: 441db4b8262eda08eb90ddecca3e130f0d0fb7b499137b1c8aca6446625932ba
 
 name:           PAC
 version:        0.0.0
@@ -27,6 +27,7 @@ library
       Handler.Common
       Handler.Home
       Handler.Login
+      Handler.Sala
       Import
       Import.NoFoundation
       Model
@@ -48,6 +49,7 @@ library
     , containers
     , data-default
     , directory >=1.1 && <1.4
+    , esqueleto
     , fast-logger >=2.2 && <2.5
     , file-embed
     , hjsmin >=0.1 && <0.3
@@ -103,6 +105,7 @@ executable PAC
     , containers
     , data-default
     , directory >=1.1 && <1.4
+    , esqueleto
     , fast-logger >=2.2 && <2.5
     , file-embed
     , hjsmin >=0.1 && <0.3

@@ -9,9 +9,9 @@
            <a class="left brand-logo" href=@{HomeR}>#{idText}</a>
           <ul class="right hide-on-med-and-down">
               <li class="active"><a href=@{HomeR}>Home</a></li>
-              <li><a class="dropdown-button" href=@{AdminR} data-target="dropadmins">Admins</a></li>
+              <li><a class="dropdown-button" href=@{ListaAdminR} data-target="dropadmins">Admins</a></li>
               <li class=""><a>Pessoa</a></li>
-              <li class="dropdown-button" href=@{SalaR} data-target="dropsalas"><a>Sala</a></li>
+              <li class="dropdown-button" href=@{ListaSalaR} data-target="dropsalas"><a>Sala</a></li>
               <li class=""><a>Registros</a></li>
               $if idText /= ""
                 <li><a class="left" href=@{AdminLogoutR}>Logout</a></li>
@@ -30,4 +30,4 @@
     <li><a href=@{ListaSalaR}>Lista de Salas</a></li>
 
 <main>
-  <img src=@{StaticR haskellchan_png} alt="Haskell-chan" class="center" style="width:102px;height:221px;">
+  <img src=@{StaticR haskellchan_render_png} alt="Haskell-chan" class="center" style="width:204px;height:442px;">
