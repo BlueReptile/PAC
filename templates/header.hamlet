@@ -9,9 +9,9 @@
            <a class="left brand-logo" href=@{HomeR}>#{idText}</a>
           <ul class="right hide-on-med-and-down">
               <li><a href=@{HomeR}>Home</a></li>
-              <li><a class="dropdown-button" href=@{AdminR} data-target="dropadmins">Admins</a></li>
+              <li><a class="dropdown-button" href=@{ListaAdminR} data-target="dropadmins">Admins</a></li>
               <li class=""><a>Pessoa</a></li>
-              <li class="dropdown-button" href=@{SalaR} data-target="dropsalas"><a>Sala</a></li>
+              <li class="dropdown-button" href=@{ListaSalaR} data-target="dropsalas"><a>Sala</a></li>
               <li class=""><a>Registros</a></li>
               $if idText /= ""
                 <li><a class="left" href=@{AdminLogoutR}>Logout</a></li>
