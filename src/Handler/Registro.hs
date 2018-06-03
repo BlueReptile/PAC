@@ -15,7 +15,6 @@ import Prelude
 import qualified Database.Esqueleto      as E
 import           Database.Esqueleto      ((^.))
 import Data.Time.Format
-
 -- areq -> required
 -- textField -> campo texto
 -- Nothing -> propriedades a mais do campo
@@ -40,7 +39,7 @@ getRegistroR = do
                         , registro ^. RegistroDatahora
                         )
 
-        --selectList [] [Asc RegistroDatahora]
+    --selectList [] [Asc RegistroDatahora]
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
@@ -62,12 +61,12 @@ getRegistroR = do
                                  <li class="divider"></li>
                                     <td>
                                         <a href=@{HomeR}>
-                                            <h3>
+                                            <h5>
                                                 #{nome}
                                             #{formatePraMim $ datahora}
+                                        <li class="divider"></li>
         |]
         $(whamletFile "templates/footer.hamlet")
 
 formatePraMim :: UTCTime -> String
-formatePraMim = show
---formatePraMim a = iso8601DateFormat $ Just (show a)
+formatePraMim a = Prelude.unwords $ Prelude.tail $ Prelude.reverse $ Prelude.words $ show a
