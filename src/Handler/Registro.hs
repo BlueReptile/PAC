@@ -29,15 +29,19 @@ getRegistroR = do
                 return id
             _ -> do
                 redirect LoginPageR
+
     registros <- runDB
                 $ E.select
-                $ E.from $ \(registro `E.InnerJoin` sala) -> do
+                $ E.from $ \(registro `E.InnerJoin` sala `E.InnerJoin` pessoa) -> do
+                    E.on $ registro ^. RegistroPessoa E.==. pessoa ^. PessoaId
                     E.on $ registro ^. RegistroSala E.==. sala ^. SalaId
                     return
                         ( registro ^. RegistroId
                         , sala  ^. SalaNome
                         , registro ^. RegistroDatahora
+                        , pessoa ^. PessoaNome
                         )
+
 
     --selectList [] [Asc RegistroDatahora]
     defaultLayout $ do
@@ -56,13 +60,14 @@ getRegistroR = do
                                     Registros
                                 <th>
                         <tbody>
-                            $forall (E.Value registroid, E.Value nome, E.Value datahora) <- registros
+                            $forall (E.Value registroid, E.Value nomesala, E.Value datahora, E.Value nomepessoa) <- registros
                                 <tr>
                                  <li class="divider"></li>
                                     <td>
                                         <a href=@{HomeR}>
                                             <h5>
-                                                #{nome}
+                                                #{nomesala}
+                                            #{nomepessoa}
                                             #{formatePraMim $ datahora}
                                         <li class="divider"></li>
         |]
