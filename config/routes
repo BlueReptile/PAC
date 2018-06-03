@@ -9,13 +9,12 @@
 !/admin/#AdminId       ADMPerfilR     GET POST
 /admin/lista           ListaAdminR    GET
 
-
-/sala                 SalaR           GET POST
-!/sala/#SalaId        SalaPerfilR     GET POST
-/sala/lista           ListaSalaR      GET
-
-
+/sala                  SalaR          GET POST
+!/sala/#SalaId         SalaPerfilR    GET POST
+/sala/lista            ListaSalaR     GET
 
 /loginPage             LoginPageR     GET
 /login                 AdminLoginR    POST
 /logout                AdminLogoutR   GET
+
+/registro              RegistroR      GET
