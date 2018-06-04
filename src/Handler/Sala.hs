@@ -29,6 +29,7 @@ getSalaR = do
                 _ -> do
                     redirect LoginPageR
     arduinos <- runDB $ selectList [] [Asc ArduinoName]
+    areas <- runDB $ selectList [] [Asc AreaOrdem]
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
@@ -53,6 +54,15 @@ getSalaR = do
                         <option value="" disabled selected>Qual Arduino?</option>
                         $forall (Entity arid arduino) <- arduinos
                           <option value="#{fromSqlKey $ arid}">#{arduinoName arduino}</option>
+
+
+                      <label>Area designada</label>
+                      <select id="areaDesignada" name="areaDesignada">
+                         <option value="" disabled selected>Qual Area?</option>
+                         $forall (Entity areaid restoarea) <- areas
+                           <option value="#{fromSqlKey $ areaid}">#{areaNome restoarea}</option>
+
+
                     <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
                       <i class="material-icons right">send</i>
         |]
@@ -69,7 +79,10 @@ postSalaR = do
                 redirect LoginPageR
         nome <- runInputPost $ ireq textField "sala_nome"
         id <- runInputPost $ ireq intField "id"
-        sid <- runDB $ insert $ Sala nome (toSqlKey id)
+        area <- runInputPost $ ireq intField "areaDesignada"
+        let posx = (Just 0)
+        let posy = (Just 0)
+        sid <- runDB $ insert $ Sala nome (toSqlKey id) (toSqlKey area) posx posy
         defaultLayout $ do
                 addStylesheet $ (StaticR css_materialize_css)
                 addScript $ (StaticR js_jquery_js)

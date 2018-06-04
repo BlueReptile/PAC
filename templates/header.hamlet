@@ -13,6 +13,7 @@
               <li class=""><a>Pessoa</a></li>
               <li class="dropdown-button" href=@{ListaSalaR} data-target="dropsalas"><a>Sala</a></li>
               <li class=""><a href=@{RegistroR}>Registros</a></li>
+              <li class="dropdown-button" href=@{ListaAreaR} data-target="dropareas"><a>Area</a></li>
               $if idText /= ""
                 <li><a class="left" href=@{AdminLogoutR}>Logout</a></li>
               $else
@@ -29,3 +30,9 @@
     <li><a href=@{SalaR}>Cadastro de Sala</a></li>
     <li class="divider"></li>
     <li><a href=@{ListaSalaR}>Lista de Salas</a></li>
+
+
+<ul id="dropareas" class="dropdown-content white-text">
+    <li><a href=@{AreaR}>Cadastro de Area</a></li>
+    <li class="divider"></li>
+    <li><a href=@{ListaAreaR}>Lista de Areas</a></li>

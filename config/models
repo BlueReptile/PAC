@@ -1,8 +1,8 @@
 Admin
-  login             Text
-  pass              Text
-  UniqueLogin        login pass
-  deriving          Show
+  login       Text
+  pass        Text
+  UniqueLogin login pass
+  deriving    Show
 
 Pessoa
   nome        Text
@@ -13,6 +13,9 @@ Pessoa
 Sala
   nome        Text
   arid        ArduinoId
+  area        AreaId
+  posx        Double Maybe
+  posy        Double Maybe
   deriving    Show
 
 Arduino
@@ -25,4 +28,11 @@ Registro
   pessoa      PessoaId
   datahora    UTCTime
   entrada     Bool
+  deriving    Show
+
+Area json
+  nome        Text
+  mapa        Text
+  ordem       Int
+  UniqueOrdem ordem
   deriving    Show
