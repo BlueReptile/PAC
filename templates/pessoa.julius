@@ -26,8 +26,12 @@ $(document).ready(function() {
  });
 
 function updateID(){
- document.getElementById("card").innerHTML = $.ajax({
-  url: 'http://187.21.121.25:8081/card',
+  var e = document.getElementById("arduinoIp");
+  console.log(document.getElementById("arduinoIp"));
+  console.log(e);
+  console.log(e.options[e.selectedIndex].value);
+  document.getElementById("card").innerHTML = $.ajax({
+  url: "http://" + e.options[e.selectedIndex].value + "/card",
   method: 'GET',
   dataType: 'json',
   success: function(data) {
@@ -43,6 +47,64 @@ function updateID(){
    error: function(data){
    alert("error");
   }
-});
-
+ });
 }
+
+function TestaCPF(strCPF) {
+    var Soma;
+    var Resto;
+    Soma = 0;
+    if (strCPF == "00000000000") return false;
+
+    for (i=1; i<=9; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (11 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(9, 10)) ) return false;
+
+    Soma = 0;
+    for (i = 1; i <= 10; i++) Soma = Soma + parseInt(strCPF.substring(i-1, i)) * (12 - i);
+    Resto = (Soma * 10) % 11;
+
+    if ((Resto == 10) || (Resto == 11))  Resto = 0;
+    if (Resto != parseInt(strCPF.substring(10, 11) ) ) return false;
+    return true;
+}
+
+
+
+$("#pessoaForm").validate({
+        rules: {
+            pessoa_nome: {
+                required: true,
+                minlength: 5
+            },
+            pessoa_cpf: {
+                required: true,
+                depends: function(element) {
+                return TestaCPF(element);
+                }
+
+            },
+            arduinoIp: {
+		      		required: true,
+		      		minlength: 5
+		       	},
+        //For custom messages
+        messages: {
+            pessoa_nome:{
+                required: "Digite o Nome",
+                minlength: "Digite no Minimo 5 caracteres"
+            },
+            pessoa_cpf: "Digite o CPF",
+        },
+        errorElement : 'div',
+        errorPlacement: function(error, element) {
+          var placement = $(element).data('error');
+          if (placement) {
+            $(placement).append(error)
+          } else {
+            error.insertAfter(element);
+          }
+        }
+     });

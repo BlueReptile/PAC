@@ -46,16 +46,17 @@ getPessoaR = do
             <div class="card blue-grey darken-1">
               <div class="card-content white-text">
                 <span class="card-title">Cadastro de Pessoa</span>
-                  <form action=@{PessoaR} method=get>
-                     <label class="active" for="pessoa_nome">Nome da Pessoa</label>
+                  <form action=@{PessoaR} id="pessoaForm" name="pessoaForm" method=get>
+                     <label class="active white-text" for="pessoa_nome">Nome da Pessoa</label>
                      <input value="" name="pessoa_nome" id="pessoa_nome" type="text" class="validate">
-                      <label>Arduino para Escanear o Cartão</label>
-                      <br>
-                      <select name="ip" >
+                     <label class="active white-text" for="pessoa_cpf">CPF</label>
+                     <input value="" name="pessoa_cpf" id="pessoa_cpf" type="text" class="validate" onkeyup="">
+                     <label>Arduino para Escanear o Cartão</label>
+                     <select id="arduinoIp" name="arduinoIp">
                         <option value="" disabled selected>Qual Arduino?</option>
                         $forall (Entity arid arduino) <- arduinos
                           <option value="#{arduinoIp arduino}">#{arduinoName arduino}</option>
-                      <label for="card">Cartão da pessoa</label>
+                      <label class="white-text" for="card">Cartão da pessoa</label>
                       <input disabled class="white-text" value="cartaoID" id="card" type="text" class="validate">
                       <input class="btn waves-effect waves-light" id="UpdateID" type="button" value="updateID" onclick="updateID();" />
                     <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
