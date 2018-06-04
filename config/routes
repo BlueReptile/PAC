@@ -13,6 +13,11 @@
 !/sala/#SalaId         SalaPerfilR    GET POST
 /sala/lista            ListaSalaR     GET
 
+/pessoa                PessoaR        GET POST
+!/pessoa/#PessoaId     PessoaPerfilR  GET POST
+/pessoa/lista          ListaPessoaR   GET
+
+
 /loginPage             LoginPageR     GET
 /login                 AdminLoginR    POST
 /logout                AdminLogoutR   GET

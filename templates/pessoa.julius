@@ -1,0 +1,48 @@
+
+  $('.dropdown-button').dropdown({
+      constrainWidth: false, // Does not change width of dropdown to that of the activator
+      hover: true, // Activate on hover
+      alignment: 'left', // Displays dropdown with edge aligned to the left of button
+      container: true,
+      coverTrigger: false
+    }
+  );
+
+$(".dropdown-content>li>a").css("color", 'black');
+$(".dropdown-content>li>span").css("color", 'light-blue darken-2');
+
+
+$(document).ready(function(){
+  $('select').formSelect();
+});
+
+
+$(document).ready(function() {
+  $('input#input_text, textarea#textarea2').characterCounter();
+});
+
+$(document).ready(function() {
+   M.updateTextFields();
+ });
+
+function updateID(){
+ document.getElementById("card").innerHTML = $.ajax({
+  url: 'http://187.21.121.25:8081/card',
+  method: 'GET',
+  dataType: 'json',
+  success: function(data) {
+    console.log(data.card);
+    card = data.card;
+    console.log(card);
+    document.getElementById('card').value=data.card;
+    document.getElementById('card').value=card;
+  },
+  complete: function(data) {
+     console.log("complete")
+  },
+   error: function(data){
+   alert("error");
+  }
+});
+
+}
