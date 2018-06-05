@@ -10,7 +10,7 @@ Pessoa
   cpf         Text
   deriving    Show
 
-Sala
+Sala json
   nome        Text
   arid        ArduinoId
   area        AreaId
