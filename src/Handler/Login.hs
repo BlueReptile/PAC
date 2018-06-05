@@ -7,8 +7,8 @@
 module Handler.Login where
 
 import Import
-import Network.HTTP.Types.Status
-import Database.Persist.Postgresql
+--import Network.HTTP.Types.Status
+--import Database.Persist.Postgresql
 import Text.Lucius
 import Text.Julius
 
@@ -21,8 +21,8 @@ getLoginPageR :: Handler Html
 getLoginPageR = do
     maybeId <- lookupSession "ID"
     idText <- case maybeId of
-        (Just id) -> do
-            return id
+        (Just a) -> do
+            return a
         _ -> do
             return ""
     (widget,enctype) <- generateFormPost formAdmin
@@ -56,15 +56,15 @@ postAdminLoginR :: Handler Html
 postAdminLoginR = do
                  maybeId <- lookupSession "ID"
                  idText <- case maybeId of
-                         (Just id) -> do
-                             return id
+                         (Just a) -> do
+                             return a
                          _ -> do
                              return ""
                  login <- runInputPost $ ireq textField "f1"
                  pass <- runInputPost $ ireq textField "f2"
                  maybeAdmin <- runDB $ getBy $ UniqueLogin login pass
                  case maybeAdmin of
-                             Just user -> do
+                             Just _ -> do
                                         setSession "ID" $ login
                                         redirect HomeR
                              _ -> defaultLayout $ do
@@ -74,11 +74,20 @@ postAdminLoginR = do
                                  toWidget $(juliusFile "templates/admin.julius")
                                  toWidget $(luciusFile "templates/admin.lucius")
                                  $(whamletFile "templates/header.hamlet")
-                                 [whamlet|
-                                   <main style="background-color:red;">
+                                 toWidget $ [whamlet|
+                                   <main style="background-color: yellow; animation-name: piscadela; animation-duration: 1s; animation-iteration-count: infinite;">
                                      <img src=@{StaticR sirene_gif} alt="ALERTA" class="center" style="width:200px;height:200px;">
                                      <h1 class="center"> USUARIO INVALIDO
 
+                                 |]
+                                 toWidget $ [lucius|
+                                   @keyframes piscadela {
+                                       0%   {background-color:red;}
+                                       25%  {background-color:blue;}
+                                       50%  {background-color:red;}
+                                       75%  {background-color:blue;}
+                                       100% {background-color:red;}
+                                   }
                                  |]
                                  $(whamletFile "templates/footer.hamlet")
 
