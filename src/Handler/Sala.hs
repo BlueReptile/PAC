@@ -46,10 +46,11 @@ getSalaR = do
               <div class="card-content white-text">
                 <span class="card-title">Cadastro de Sala</span>
                   <form action=@{SalaR} method=post>
-                     <label class="active" for="sala_nome">Nome da Sala</label>
+                   <div class="input-field">
+                     <label class="active white-text" for="sala_nome">Nome da Sala</label>
                      <input value="" name="sala_nome" id="sala_nome" type="text" class="validate">
-                      <label>Arduino</label>
-                      <br>
+                   <label>Arduino</label>
+                    <br>
                       <select name="id" >
                         <option value="" disabled selected>Qual Arduino?</option>
                         $forall (Entity arid arduino) <- arduinos
