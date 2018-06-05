@@ -30,7 +30,7 @@ function updateID(){
   console.log(document.getElementById("arduinoIp"));
   console.log(e);
   console.log(e.options[e.selectedIndex].value);
-  document.getElementById("cartaoID").innerHTML = $.ajax({
+  document.getElementById("card").innerHTML = $.ajax({
   url: "http://" + e.options[e.selectedIndex].value + "/card",
   method: 'GET',
   dataType: 'json',
@@ -38,8 +38,8 @@ function updateID(){
     console.log(data.card);
     card = data.card;
     console.log(card);
-    document.getElementById('cartaoID').value=data.card;
-    document.getElementById('cartaoID').value=card;
+    document.getElementById('card').value=data.card;
+    document.getElementById('card').value=card;
   },
   complete: function(data) {
      console.log("complete")
@@ -96,9 +96,7 @@ $("#pessoaForm").validate({
                 required: "Digite o Nome",
                 minlength: "Digite no Minimo 5 caracteres"
             },
-            pessoa_cpf:{
-              required: "Digite o CPF"
-              },
+            pessoa_cpf: "Digite o CPF",
         },
         errorElement : 'div',
         errorPlacement: function(error, element) {
@@ -109,4 +107,4 @@ $("#pessoaForm").validate({
             error.insertAfter(element);
           }
         }
-     }});
+     });
