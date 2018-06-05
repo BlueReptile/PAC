@@ -5,19 +5,20 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper light-blue darken-2">
-          <i class="left material-icons" style="font-size: 50px">account_circle</i>
            <a class="left brand-logo" href=@{HomeR}>#{idText}</a>
+           <i class="left" img src=@{StaticR head_chan_png} style="width:60px;height:60px;"></i>
           <ul class="right hide-on-med-and-down">
-              <li class="active"><a href=@{HomeR}>Home</a></li>
-              <li><a class="dropdown-button" href=@{ListaAdminR} data-target="dropadmins">Admins</a></li>
-              <li class="dropdown-button" data-target="droppessoas"><a href=@{ListaPessoaR} data-target="droppessoas">Pessoa</a></li>
-              <li class="dropdown-button" href=@{ListaSalaR} data-target="dropsalas"><a>Sala</a></li>
-              <li class="dropdown-button" href=@{ListaAreaR} data-target="dropareas"><a>Area</a></li>
-              <li class=""><a href=@{RegistroR}>Registros</a></li>
+              <li><a class="waves-effect waves-light btn" href=@{HomeR}><i class="material-icons left">search</i>Radar</a></li>
+              <li class="active"><a href=@{HomeR}><i class="material-icons left">home</i>Home</a></li>
               $if idText /= ""
-                <li><a class="left" href=@{AdminLogoutR}>Logout</a></li>
+                <li><a class="dropdown-button" href=@{ListaAdminR} data-target="dropadmins"><i class="material-icons left">security</i>Administrador</a></li>
+                <li class="dropdown-button" data-target="droppessoas"><a href=@{ListaPessoaR} data-target="droppessoas"><i class="material-icons left">person</i>Pessoa</a></li>
+                <li class="dropdown-button" data-target="dropsalas"><a href=@{ListaSalaR}><i class="material-icons left">room</i>Sala</a></li>
+                <li class="dropdown-button" data-target="dropareas"><a href=@{ListaAreaR}><i class="material-icons left">business</i>Area</a></li>
+                <li class=""><a href=@{RegistroR}><i class="material-icons left">insert_drive_file</i>Registros</a></li>
+                <li><a class="waves-effect waves-light btn" href=@{AdminLogoutR}>Logout<i class="material-icons right">power_settings_new</i></a></li>
               $else
-                <li><a class="left" href=@{LoginPageR}>Login</a></li>
+                <li><a class="waves-effect waves-light btn" href=@{LoginPageR}>Login<i class="material-icons right">send</i></a></li>
 
 
 <ul id="dropadmins" class="dropdown-content white-text">

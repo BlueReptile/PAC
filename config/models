@@ -14,8 +14,10 @@ Sala
   nome        Text
   arid        ArduinoId
   area        AreaId
-  posx        Double Maybe
-  posy        Double Maybe
+  posx        Int Maybe
+  posy        Int Maybe
+  sizex       Int Maybe
+  sizey       Int Maybe
   deriving    Show
 
 Arduino
