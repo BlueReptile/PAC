@@ -34,8 +34,6 @@ getPessoaR = do
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
-        addScript $ (StaticR js_jquery_validate_js)
-        addScript $ (StaticR js_additional_methods_js)
         addScript $ (StaticR js_materialize_js)
         toWidget $(juliusFile "templates/pessoa.julius")
         toWidget $(luciusFile "templates/admin.lucius")
@@ -48,27 +46,21 @@ getPessoaR = do
             <div class="card blue-grey darken-1">
               <div class="card-content white-text">
                 <span class="card-title">Cadastro de Pessoa</span>
-                  <form action=@{PessoaR} id="pessoaForm" name="pessoaForm" novalidate="novalidate" method=post>
-                   <div class="input-field">
+                  <form action=@{PessoaR} id="pessoaForm" name="pessoaForm" method=get>
+                     <label class="active white-text" for="pessoa_nome">Nome da Pessoa</label>
                      <input value="" name="pessoa_nome" id="pessoa_nome" type="text" class="validate">
-                     <label class="active white-text" for="pessoa_nome">Nome da Pessoa
-                   <div class="input-field">
+                     <label class="active white-text" for="pessoa_cpf">CPF</label>
                      <input value="" name="pessoa_cpf" id="pessoa_cpf" type="text" class="validate" onkeyup="">
-                     <label class="active white-text" for="pessoa_cpf">CPF
-                   <label class="white-text">Arduino para Escanear o Cartão
-                   <br>
-                   <select id="arduinoIp" name="arduinoIp">
-                    <option value="" disabled selected>Qual Arduino?
-                    $forall (Entity arid arduino) <- arduinos
-                      <option value="#{arduinoIp arduino}">#{arduinoName arduino}
-                   <div class="input-field">
-                     <input class="white-text" value="CartãoId" id="cartaoID" name="cartaoID" type="text" class="validate" readonly="readonly">
-                     <label class="white-text" for="cartaoID">Cartão da pessoa
-                     <button class="btn waves-effect waves-light" id="UpdateID" type="button" onclick="updateID();">Atualizar RFID
-                     <br>
-                     <br>
-                   <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
-                    <i class="material-icons right">send</i>
+                     <label>Arduino para Escanear o Cartão</label>
+                     <select id="arduinoIp" name="arduinoIp">
+                        <option value="" disabled selected>Qual Arduino?</option>
+                        $forall (Entity arid arduino) <- arduinos
+                          <option value="#{arduinoIp arduino}">#{arduinoName arduino}</option>
+                      <label class="white-text" for="card">Cartão da pessoa</label>
+                      <input disabled class="white-text" value="cartaoID" id="card" type="text" class="validate">
+                      <input class="btn waves-effect waves-light" id="UpdateID" type="button" value="updateID" onclick="updateID();" />
+                    <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
+                      <i class="material-icons right">send</i>
         |]
         $(whamletFile "templates/footer.hamlet")
 
@@ -82,9 +74,8 @@ postPessoaR = do
             _ -> do
                 redirect LoginPageR
         nome <- runInputPost $ ireq textField "pessoa_nome"
-        cpf <- runInputPost $ ireq textField "pessoa_nome"
-        cartaoID <- runInputPost $ ireq intField "cartaoID"
-        pid <- runDB $ insert $ Pessoa nome cartaoID cpf
+        ip <- runInputPost $ ireq intField "ip"
+        -- sid <- runDB $ insert $ Pessoa nome (toSqlKey id)
         defaultLayout $ do
                 addStylesheet $ (StaticR css_materialize_css)
                 addScript $ (StaticR js_jquery_js)
