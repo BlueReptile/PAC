@@ -10,10 +10,10 @@
           <ul class="right hide-on-med-and-down">
               <li><a href=@{HomeR}>Home</a></li>
               <li><a class="dropdown-button" href=@{ListaAdminR} data-target="dropadmins">Admins</a></li>
-              <li class=""><a>Pessoa</a></li>
-              <li class="dropdown-button" href=@{ListaSalaR} data-target="dropsalas"><a>Sala</a></li>
-              <li class=""><a href=@{RegistroR}>Registros</a></li>
-              <li class="dropdown-button" href=@{ListaAreaR} data-target="dropareas"><a>Area</a></li>
+              <li class="dropdown-button" data-target="droppessoas"><a href=@{ListaPessoaR} data-target="droppessoas">Pessoa</a></li>
+              <li class="dropdown-button" data-target="dropsalas"><a href=@{ListaSalaR}>Sala</a></li>
+              <li class="dropdown-button" data-target="dropareas"><a href=@{ListaAreaR}>Area</a></li>
+              <li class=""><a href=@{RegistroR} >Registros</a></li>
               $if idText /= ""
                 <li><a class="left" href=@{AdminLogoutR}>Logout</a></li>
               $else
@@ -36,3 +36,8 @@
     <li><a href=@{AreaR}>Cadastro de Area</a></li>
     <li class="divider"></li>
     <li><a href=@{ListaAreaR}>Lista de Areas</a></li>
+
+<ul id="droppessoas" class="dropdown-content white-text">
+    <li><a href=@{PessoaR}>Cadastro de Pessoas</a></li>
+    <li class="divider"></li>
+    <li><a href=@{ListaPessoaR}>Lista de Pessoas</a></li>
