@@ -3,4 +3,6 @@ ToDo
 a) Mostrar senhas em perfis de admins
 b) Botar Patchs em perfis
 c) Regra de negócio: ter -no mínimo- 2 admins para poder apagar ou entao desabilita o botão
+--PRIORIDADES
 d) Radar não deixa os dropdowns aparecerem
+e) Transformar rota de Radar em "Rota + receber uma variável" (numero da area), fazer começar em 1 e refatorar os headers quanto a isso
