@@ -1,0 +1,8 @@
+function drag(){
+  $(function(){$( "#janela" ).draggable();});
+  document.getElementById('janela').style.backgroundColor= "rgba(255,255,255,25)";
+}
+
+function desfoca(){
+  document.getElementById('janela').style.backgroundColor= "rgba(0,0,255,0)";
+}

@@ -8,7 +8,7 @@ module Handler.Radar where
 
 import Import
 import Database.Persist.Postgresql
-import Text.Lucius
+import Text.Cassius
 import Text.Julius
 
 getRadarR :: Handler Html
@@ -21,10 +21,10 @@ getRadarR = do
                     return ""
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
-        addScript $ (StaticR js_jquery_js)
+        --addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
-        $(whamletFile "templates/radar.hamlet")
         toWidget $(juliusFile "templates/radar.julius")
-        toWidget $(luciusFile "templates/radar.lucius")
+        toWidget $(cassiusFile "templates/radar.cassius")
         $(whamletFile "templates/header.hamlet")
+        $(whamletFile "templates/radar.hamlet")
         $(whamletFile "templates/footer.hamlet")

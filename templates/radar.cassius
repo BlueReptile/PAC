@@ -1,0 +1,23 @@
+#janela
+    width: 150px
+    height: 150px
+    padding: 10px
+    background-color: rgba(255,0,0,0)
+
+body
+    display: flex
+    min-height: 100vh
+    flex-direction: column
+    background-color: #212121
+
+
+span.windowTitle
+    font-size: 50
+    width: 100px
+    height: 100px
+    position: relative
+    font-family: "Segoe UI"
+    font-weight: bold
+
+main
+    flex: 1 0 auto
