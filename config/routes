@@ -17,7 +17,6 @@
 !/pessoa/#PessoaId     PessoaPerfilR  GET POST
 /pessoa/lista          ListaPessoaR   GET
 
-
 /loginPage             LoginPageR     GET
 /login                 AdminLoginR    POST
 /logout                AdminLogoutR   GET
@@ -27,3 +26,5 @@
 /area                  AreaR          GET POST
 !/area/#AreaId         AreaPerfilR    GET POST
 /area/lista            ListaAreaR     GET
+
+/radar                 RadarR         GET
