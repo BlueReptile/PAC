@@ -4,9 +4,15 @@
 <main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
-  <div #janela class="window card z-depth-3" onmouseover=drag() onmouseout=desfoca()>
-      <span class="windowTitle">Sala AAA
-      <br><br>
-      <div class="pessoas"> Pessoa X
-      <div class="pessoas"> Pessoa Y
-      <div class="pessoas"> Pessoa Z
+
+  <div .janela onmouseover=drag(this) onmouseout=desfoca(this)>
+      <center>
+          <span .windowTitle> Sala AAA
+          <div .pessoas> Pessoa X
+          <div .pessoas> Pessoa Y
+          <div .pessoas> Pessoa Z
+          <div .botaoeditar style="display:none;">
+              <a .btn-floating left >
+                  <i .material-icons>zoom_out
+              <a .btn-floating right>
+                  <i .material-icons>zoom_in

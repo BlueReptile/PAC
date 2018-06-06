@@ -83,9 +83,8 @@ postSalaR = do
         area <- runInputPost $ ireq intField "areaDesignada"
         let posx = (Just 0)
         let posy = (Just 0)
-        let sizex = (Just 0)
-        let sizey = (Just 0)
-        sid <- runDB $ insert $ Sala nome (toSqlKey id) (toSqlKey area) posx posy sizex sizey
+        let size = (Just 0)
+        sid <- runDB $ insert $ Sala nome (toSqlKey id) (toSqlKey area) posx posy size
         defaultLayout $ do
                 addStylesheet $ (StaticR css_materialize_css)
                 addScript $ (StaticR js_jquery_js)

@@ -1,14 +1,16 @@
-#janela
+.janela
     width: 150px
     height: 150px
     padding: 10px
-    background-color: rgba(255,0,0,0)
+    background-color: rgba(255,255,255,0)
+    position: relative
+    border: 4px solid rgba(0,0,255,0)
 
 body
     display: flex
     min-height: 100vh
     flex-direction: column
-    background-color: #212121
+    background-color: #FFFFFF
 
 
 span.windowTitle
@@ -21,3 +23,7 @@ span.windowTitle
 
 main
     flex: 1 0 auto
+    background-image: url("https://www.evilresource.com/images/maps/re1_mansion1f/map.gif")
+    background-repeat: no-repeat
+    background-position: center;
+    background-size: contain;

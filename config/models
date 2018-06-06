@@ -16,8 +16,7 @@ Sala json
   area        AreaId
   posx        Int Maybe
   posy        Int Maybe
-  sizex       Int Maybe
-  sizey       Int Maybe
+  size        Double Maybe
   deriving    Show
 
 Arduino

@@ -27,4 +27,4 @@ getRadarR = do
         toWidget $(cassiusFile "templates/radar.cassius")
         $(whamletFile "templates/header.hamlet")
         $(whamletFile "templates/radar.hamlet")
-        $(whamletFile "templates/footer.hamlet")
+        $(whamletFile "templates/footerRadar.hamlet")
