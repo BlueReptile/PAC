@@ -1,8 +1,11 @@
 ToDo
 
-a) Mostrar senhas em perfis de admins
-b) Botar Patchs em perfis
-c) Regra de negócio: ter -no mínimo- 2 admins para poder apagar ou entao desabilita o botão
---PRIORIDADES
-d) Radar não deixa os dropdowns aparecerem
-e) Transformar rota de Radar em "Rota + receber uma variável" (numero da area), fazer começar em 1 e refatorar os headers quanto a isso
+--High Priority
+1) Terminar o Radar
+2) Inserir rotas de json para o Radar
+--Medium Priority
+1) Mostrar senhas em perfis de admins p/ dar patch
+2) Botar Patchs em perfis
+3) Regra de negócio: ter -no mínimo- 2 admins para poder apagar ou entao desabilita o botão
+--Low priority
+1) About: when chans collide
