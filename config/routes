@@ -28,3 +28,4 @@
 /area/lista            ListaAreaR     GET
 
 /radar                 RadarR         GET
+!/radar/#Int           RadarIndiceR   GET
