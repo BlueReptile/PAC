@@ -21,7 +21,9 @@ desemcapsula :: Maybe Text -> Text
 desemcapsula (Just a) = a
 desemcapsula Nothing = ""
 
-
+desemcapsula2 :: Maybe Int -> Int
+desemcapsula2 (Just a) = a
+desemcapsula2 Nothing = 0
 
 
 
@@ -64,10 +66,12 @@ getRadarIndiceR ordemcampo automatico = do
                 _ ->
                     return ""
     areaMax <- runDB $ selectList [] [Desc AreaOrdem]
-    pegaareaMax <- case (safeHead(areaMax)) of
+    redirecionaareaMax <- case (safeHead(areaMax)) of
                     Just (Entity _ resto) -> if (((areaOrdem resto) < ordemcampo) || (ordemcampo < 1)) then redirect (RadarIndiceR 1 automatico) else return Nothing
                     _ -> do redirect (RadarIndiceR 1 automatico)
-
+    pegaareaMaxOrdem <- case (safeHead(areaMax)) of
+                    Just (Entity _ resto) -> do return $ Just $ areaOrdem resto
+                    _ -> do return Nothing
 
     areanominho <- runDB $ selectList [AreaOrdem ==. ordemcampo] [Asc AreaOrdem]
     pegaareaNome <- case (safeHead(areanominho)) of
