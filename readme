@@ -1,11 +1,14 @@
 ToDo
 
 --High Priority
-1) Terminar o Radar
-2) Inserir rotas de json para o Radar
+1) Ordenar areas no banco com o pinned
+2) Terminar rotas de json para o Radar
+3) Terminar o Radar com ajax
+
 --Medium Priority
 1) Mostrar senhas em perfis de admins p/ dar patch
 2) Botar Patchs em perfis
 3) Regra de negócio: ter -no mínimo- 2 admins para poder apagar ou entao desabilita o botão
+
 --Low priority
 1) About: when chans collide
