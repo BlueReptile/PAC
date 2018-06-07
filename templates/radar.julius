@@ -24,6 +24,8 @@ window.onload = function inicAuto(){
 function inicAuto2(){
     if (document.getElementById("cbauto").checked == true){
       vaiproprox();
+    } else{
+      ficaaquimesmo();
     }
 }
 
@@ -31,4 +33,8 @@ function vaiproprox(){
     setTimeout(function () {
        window.location.href = " @{RadarIndiceR (ordemcampo + 1) "true"}";
     }, 10000);
+}
+
+function ficaaquimesmo(){
+    window.location.href = " @{RadarIndiceR (ordemcampo) "false"}";
 }
