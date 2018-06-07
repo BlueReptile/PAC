@@ -12,3 +12,23 @@ function desfoca(e){
     e.style.backgroundColor= "rgba(0,0,255,0)";
     e.style.border="4px solid rgba(0,0,255,0)";
 }
+
+window.onload = function inicAuto(){
+    var x = #{rawJS automatico};
+    document.getElementById("cbauto").checked = x;
+    if (x == true){
+      vaiproprox();
+    }
+}
+
+function inicAuto2(){
+    if (document.getElementById("cbauto").checked == true){
+      vaiproprox();
+    }
+}
+
+function vaiproprox(){
+    setTimeout(function () {
+       window.location.href = " @{RadarIndiceR (ordemcampo + 1) "true"}";
+    }, 10000);
+}

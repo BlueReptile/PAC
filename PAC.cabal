@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: b5ab9955df1eb6f5862bcb49cfe7f0460de2586650aa2dabd5b40f24b3f972b8
+-- hash: a729fe8955b7c5da1333fae2a27b4052cbe848cb786a7286ff083a75a2904a1a
 
 name:           PAC
 version:        0.0.0
@@ -74,6 +74,7 @@ library
       Handler.Area
       Handler.Common
       Handler.Home
+      Handler.Json
       Handler.Login
       Handler.Pessoa
       Handler.Radar

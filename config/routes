@@ -28,4 +28,8 @@
 /area/lista            ListaAreaR     GET
 
 /radar                 RadarR         GET
-!/radar/#Int           RadarIndiceR   GET
+!/radar/#Int/#Text     RadarIndiceR   GET
+
+/json/numsalas         JsonNumSalasR  GET
+/json/area/#Int        JsonAreaR      GET
+/json/sala/#SalaId     JsonSalaR      GET

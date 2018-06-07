@@ -26,7 +26,7 @@ getRadarR = do
                     return ""
     areaUm <- runDB $ selectList [AreaOrdem ==. 1] [Asc AreaOrdem]
     buraconegro <- case (safeHead(areaUm)) of
-                    Just (Entity _ resto) -> do redirect (RadarIndiceR 1)
+                    Just (Entity _ resto) -> do redirect (RadarIndiceR 1 ("false"))
                     _ -> return Nothing
     --ack <- return $ show "a"
     defaultLayout $ do
@@ -43,8 +43,8 @@ getRadarR = do
         |]
         $(whamletFile "templates/footer.hamlet")
 
-getRadarIndiceR :: Int -> Handler Html
-getRadarIndiceR ordemcampo = do
+getRadarIndiceR :: Int -> Text -> Handler Html
+getRadarIndiceR ordemcampo automatico = do
     maybeId <- lookupSession "ID"
     idText <- case maybeId of
                 (Just id) -> do
