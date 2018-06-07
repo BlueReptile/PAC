@@ -32,7 +32,7 @@ function inicAuto2(){
 function vaiproprox(){
     setTimeout(function () {
        window.location.href = " @{RadarIndiceR (ordemcampo + 1) "true"}";
-    }, 10000);
+    }, 8000);
 }
 
 function ficaaquimesmo(){

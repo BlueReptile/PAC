@@ -7,6 +7,7 @@
 module Handler.Radar where
 
 import Import
+import Prelude
 import Database.Persist.Postgresql
 import Text.Cassius
 import Text.Lucius
@@ -15,6 +16,17 @@ import Text.Julius
 safeHead :: [a] -> Maybe a
 safeHead [] = Nothing
 safeHead (x:_) = Just x
+
+desemcapsula :: Maybe Text -> Text
+desemcapsula (Just a) = a
+desemcapsula Nothing = ""
+
+
+
+
+
+
+
 
 getRadarR :: Handler Html
 getRadarR = do
@@ -25,7 +37,7 @@ getRadarR = do
                 _ ->
                     return ""
     areaUm <- runDB $ selectList [AreaOrdem ==. 1] [Asc AreaOrdem]
-    buraconegro <- case (safeHead(areaUm)) of
+    pegaareaUm <- case (safeHead(areaUm)) of
                     Just (Entity _ resto) -> do redirect (RadarIndiceR 1 ("false"))
                     _ -> return Nothing
     --ack <- return $ show "a"
@@ -51,6 +63,18 @@ getRadarIndiceR ordemcampo automatico = do
                     return id
                 _ ->
                     return ""
+    areaMax <- runDB $ selectList [] [Desc AreaOrdem]
+    pegaareaMax <- case (safeHead(areaMax)) of
+                    Just (Entity _ resto) -> if (((areaOrdem resto) < ordemcampo) || (ordemcampo < 1)) then redirect (RadarIndiceR 1 automatico) else return Nothing
+                    _ -> do redirect (RadarIndiceR 1 automatico)
+
+
+    areanominho <- runDB $ selectList [AreaOrdem ==. ordemcampo] [Asc AreaOrdem]
+    pegaareaNome <- case (safeHead(areanominho)) of
+                    Just (Entity _ resto) -> do return $ Just (areaNome resto)
+                    _ -> do return Nothing
+
+
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
         --addScript $ (StaticR js_jquery_js)

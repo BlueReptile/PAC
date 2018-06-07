@@ -1,12 +1,9 @@
 <footer class="page-footer-fixed light-blue darken-2">
+
           <ul class="pagination" style="text-align: center;">
-              <li class="disabled"><a href="#!"><i class="material-icons">chevron_left</i></a></li>
-              <li class="active"><a href="#!">1</a></li>
-              <li class="waves-effect"><a href="#!">2</a></li>
-              <li class="waves-effect"><a href="#!">3</a></li>
-              <li class="waves-effect"><a href="#!">4</a></li>
-              <li class="waves-effect"><a href="#!">5</a></li>
-              <li class="waves-effect"><a href="#!"><i class="material-icons">chevron_right</i></a></li>
+              <li class="waves-effect"><a href=" @{RadarIndiceR (ordemcampo - 1) automatico} "><i class="material-icons">chevron_left</i></a></li>
+              <li class="waves-effect">#{desemcapsula pegaareaNome}</li>
+              <li class="waves-effect"><a href=" @{RadarIndiceR (ordemcampo + 1) automatico} "><i class="material-icons">chevron_right</i></a></li>
               <p>
               <input type="checkbox" id="cbauto" class="filled-in" onchange="inicAuto2()"/>
               <label for="cbauto">Automático
