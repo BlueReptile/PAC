@@ -22,7 +22,6 @@ window.onload = function inicAuto(){
       setTimeout(function () {
          window.location.href = " @{RadarIndiceR (ordemcampo) automatico}";
       }, 8000);
-      console.log("debug1_else");
     }
 }
 
@@ -31,7 +30,6 @@ function inicAuto2(){
       window.location.href = " @{RadarIndiceR ordemcampo "true"}";
     } else{
       ficaaquimesmo();
-      console.log("debug4");
     }
 }
 
@@ -39,10 +37,8 @@ function vaiproprox(){
     setTimeout(function () {
        window.location.href = " @{RadarIndiceR (ordemcampo + 1) "true"}";
     }, 8000);
-    console.log("debug2");
 }
 
 function ficaaquimesmo(){
     window.location.href = " @{RadarIndiceR (ordemcampo) "false"}";
-    console.log("debug3");
 }

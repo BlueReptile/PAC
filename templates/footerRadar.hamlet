@@ -2,7 +2,7 @@
 
           <ul class="pagination" style="text-align: center;">
               $if (ordemcampo <= 1)
-                  <li class="waves-effect"><a href=" @{RadarIndiceR (desemcapsula2 pegaareaMaxOrdem) automatico} "><i class="material-icons">chevron_left</i></a></li>
+                  <li class="waves-effect"><a href=" @{RadarIndiceR (desemcapsula pegaareaMaxOrdem) automatico} "><i class="material-icons">chevron_left</i></a></li>
 
               $else
                   <li class="waves-effect"><a href=" @{RadarIndiceR (ordemcampo - 1) automatico} "><i class="material-icons">chevron_left</i></a></li>
