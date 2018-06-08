@@ -23,7 +23,7 @@ span.windowTitle
 
 main
     flex: 1 0 auto
-    background-image: url("https://www.evilresource.com/images/maps/re1_mansion1f/map.gif")
+    background-image: url("#{desemcapsula pegaareaMapa}")
     background-repeat: no-repeat
     background-position: center
     background-size: contain

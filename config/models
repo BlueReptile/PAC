@@ -31,7 +31,7 @@ Registro
   entrada     Bool
   deriving    Show
 
-Area json
+Area
   nome        Text
   mapa        Text
   ordem       Int

@@ -17,6 +17,7 @@ import Text.Julius
 import qualified Database.Esqueleto      as E
 import           Database.Esqueleto      ((^.))
 
+--usado pra retirar o primeiro elemento de um selectList restrito
 safeHead :: [a] -> Maybe a
 safeHead [] = Nothing
 safeHead (x:_) = Just x
@@ -85,6 +86,7 @@ getRadarIndiceR ordemcampo automatico = do
                     return id
                 _ ->
                     return ""
+    --funcoes pra verificar, redirecionar & atribuir ordemcampo recebido no get
     areaMax <- runDB $ selectList [] [Desc AreaOrdem]
     redirecionaareaMax <- case (safeHead(areaMax)) of
                     Just (Entity _ resto) -> if (((areaOrdem resto) < ordemcampo) || (ordemcampo < 1)) then redirect (RadarIndiceR 1 automatico) else return Nothing
@@ -94,9 +96,13 @@ getRadarIndiceR ordemcampo automatico = do
                     Just (Entity _ resto) -> do return $ Just $ areaOrdem resto
                     _ -> do return Nothing
 
+    --pegando 2 campos de Area individualmente
     arealistinha <- runDB $ selectList [AreaOrdem ==. ordemcampo] [Asc AreaOrdem]
     pegaareaNome <- case (safeHead(arealistinha)) of
                     Just (Entity _ resto) -> do return $ Just (areaNome resto)
+                    _ -> do return Nothing
+    pegaareaMapa <- case (safeHead(arealistinha)) of
+                    Just (Entity _ resto) -> do return $ Just (areaMapa resto)
                     _ -> do return Nothing
 
     --usado para pegar o id da area da sala recebida na url
@@ -106,6 +112,7 @@ getRadarIndiceR ordemcampo automatico = do
 
     debug <- do return $ desemcapsula2 $ pegaareaId
 
+    {-
     salaLista <- runDB
                 $ E.select
                 $ E.from $ \(sala `E.InnerJoin` area) -> do
@@ -118,7 +125,26 @@ getRadarIndiceR ordemcampo automatico = do
                         , sala ^. SalaNome
                         , sala ^. SalaPosx
                         , sala ^. SalaPosy
+                        --depois inserir aqui tbm o campo de arid(ipdearduino) de sala, e mudar no debug E no radar.hamlet
                         )
+    -}
+    --trocaCartaoPorNome :: Int -> Text
+    --pegaArduinoId::
+    salaLista <- runDB
+                $ E.select
+                $ E.from $ \(sala `E.InnerJoin` area) -> do
+                    E.on $ sala ^. SalaArea E.==. area ^. AreaId
+                    E.where_ (sala ^. SalaArea E.==. E.val (desemcapsula2 $ pegaareaId))
+                    --desemcapsula2 incrivelmente faz o trabalho de toSqlKey
+                    return
+                        ( sala ^. SalaId
+                        , sala ^. SalaArea
+                        , sala ^. SalaNome
+                        , sala ^. SalaPosx
+                        , sala ^. SalaPosy
+                        --depois inserir aqui tbm o campo de arid(ipdearduino) de sala, e mudar no debug E no radar.hamlet
+                        )
+
 
 
 
