@@ -6,7 +6,7 @@
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
   <div .janela onmouseover=drag(this) onmouseout=desfoca(this)>
       <center>
-        $forall (E.Value salaid, E.Value salaarea, E.Value salanome, E.Value salaposicx, E.Value salaposicy) <- salaLista
+        $forall (E.Value salaid, E.Value salaarea, E.Value salanome, E.Value salaposicx, E.Value salaposicy, E.Value arip) <- salaLista
           <span .windowTitle> #{salanome}
           <div .pessoas> Pessoa X
           <div .pessoas> Pessoa Y
