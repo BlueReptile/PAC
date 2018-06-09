@@ -132,8 +132,9 @@ getRadarIndiceR ordemcampo automatico = do
     --pegaArduinoId::
     salaLista <- runDB
                 $ E.select
-                $ E.from $ \(sala `E.InnerJoin` area) -> do
-                    E.on $ sala ^. SalaArea E.==. area ^. AreaId
+                $ E.from $ \(area `E.InnerJoin` sala `E.InnerJoin` arduino) -> do
+                    E.on $ arduino ^. ArduinoId E.==. sala ^. SalaArid
+                    E.on $ area ^. AreaId E.==. sala ^. SalaArea
                     E.where_ (sala ^. SalaArea E.==. E.val (desemcapsula2 $ pegaareaId))
                     --desemcapsula2 incrivelmente faz o trabalho de toSqlKey
                     return
@@ -142,7 +143,7 @@ getRadarIndiceR ordemcampo automatico = do
                         , sala ^. SalaNome
                         , sala ^. SalaPosx
                         , sala ^. SalaPosy
-                        --depois inserir aqui tbm o campo de arid(ipdearduino) de sala, e mudar no debug E no radar.hamlet
+                        , arduino ^. ArduinoIp
                         )
 
 
@@ -160,9 +161,10 @@ getRadarIndiceR ordemcampo automatico = do
         toWidget $[whamlet|
           Debug:
           <br>
-          Id da sala atual: #{fromSqlKey $ debug}
+          Id da area atual: #{fromSqlKey $ debug}
           <br>
-          $forall (E.Value salaid, E.Value salaarea, E.Value salanome, E.Value salaposicx, E.Value salaposicy) <- salaLista
+          $forall (E.Value salaid, E.Value salaarea, E.Value salanome, E.Value salaposicx, E.Value salaposicy, E.Value arip) <- salaLista
               #{fromSqlKey $ salaid} #{fromSqlKey $ salaarea} #{salanome} #{desemcapsula salaposicx} #{desemcapsula salaposicy}
+              <br> ip #{arip}
         |]
         $(whamletFile "templates/footerRadar.hamlet")
