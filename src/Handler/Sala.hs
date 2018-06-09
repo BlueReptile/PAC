@@ -11,8 +11,8 @@ import Database.Persist.Postgresql
 import Text.Lucius
 import Text.Julius
 import Prelude
-import Database.Esqueleto
-
+import qualified Database.Esqueleto      as E
+import           Database.Esqueleto      ((^.))
 
 -- areq -> required
 -- textField -> campo texto
@@ -107,7 +107,18 @@ getSalaPerfilR sid = do
                 return id
             _ -> do
                 redirect LoginPageR
-    sala <- runDB $ get404 sid
+
+    salainfo <- runDB
+                $ E.select
+                $ E.from $ \(sala `E.InnerJoin` arduino `E.InnerJoin` area) -> do
+                    E.on $ sala ^.  SalaArea E.==. area ^. AreaId
+                    E.on $ sala ^. SalaArid E.==. arduino ^. ArduinoId
+                    return
+                        ( sala ^. SalaId
+                        , sala  ^. SalaNome
+                        , arduino ^. ArduinoName
+                        , area ^. AreaNome
+                        )
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
@@ -116,12 +127,113 @@ getSalaPerfilR sid = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
-          <main>
-            <h1>
-                SALAS #{salaNome sala}
+         <main>
+          <br>
+           <br>
+            <div class="row">
+              <div class="col s6 offset-s3 valign">
+               <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                 <span class="card-title">SALA</span>
+                 <br>
+                 $forall (E.Value idsala, E.Value sala, E.Value arduino, E.Value area) <- salainfo
+                   $if idsala == sid
+                     <p> Nome da Sala : #{sala}
+                     <p> Area da Sala : #{area}
+                     <p> Arduino da Sala : #{arduino}
+                <br>
+                <div class="card-action">
+                  <form action=@{EditSalaR}  method=post>
+                   <input type="hidden" id="sid" name="sid" value=#{fromSqlKey sid}>
+                   <button class="btn waves-effect waves-light" type="submit" name="action">Editar
+                     <i class="material-icons right">send</i>
         |]
         $(whamletFile "templates/footer.hamlet")
 
+
+
+postEditSalaR :: Handler Html
+postEditSalaR = do
+     maybeId <- lookupSession "ID"
+     idText <- case maybeId of
+            (Just id) -> do
+                return id
+            _ -> do
+                redirect LoginPageR
+     sid <- runInputPost $ ireq hiddenField "sid"
+     sala <- runDB $ selectList [SalaId Database.Persist.Postgresql.==. sid] []
+     arduinos <- runDB $ selectList [] [Asc ArduinoName]
+     areas <- runDB $ selectList [] [Asc AreaOrdem]
+     defaultLayout $ do
+        addStylesheet $ (StaticR css_materialize_css)
+        addScript $ (StaticR js_jquery_js)
+        addScript $ (StaticR js_materialize_js)
+        toWidget $(juliusFile "templates/admin.julius")
+        toWidget $(luciusFile "templates/admin.lucius")
+        $(whamletFile "templates/header.hamlet")
+        [whamlet|
+         <main>
+          <br>
+           <br>
+            <div class="row">
+              <div class="col s6 offset-s3 valign">
+               <form action=@{AltSalaR}  method=post>
+                <div class="card blue-grey darken-1">
+                 <div class="card-content white-text">
+                  <span class="card-title">SALA </span>
+                  <br>
+                  <p> Editar Sala
+                  <br>
+                  <div class="input-field">
+                     <label class="active white-text" for="sala_nome">Nome da Sala</label>
+                     <input value="" name="sala_nome" id="sala_nome" type="text" class="validate">
+                  <label>Arduino</label>
+                    <br>
+                      <select name="id" >
+                        <option value="" disabled selected>Qual Arduino?</option>
+                        $forall (Entity arid arduino) <- arduinos
+                          <option value="#{fromSqlKey $ arid}">#{arduinoName arduino}</option>
+                      <label>Area designada</label>
+                      <select id="areaDesignada" name="areaDesignada">
+                         <option value="" disabled selected>Qual Area?</option>
+                         $forall (Entity areaid restoarea) <- areas
+                           <option value="#{fromSqlKey $ areaid}">#{areaNome restoarea}</option>
+                 <br>
+                 <div class="card-action">
+                   <input type="hidden" id="sid" name="sid" value=#{fromSqlKey sid}>
+                   <button class="btn waves-effect waves-light" type="submit" name="action">Editar
+                     <i class="material-icons right">send</i>
+        |]
+        $(whamletFile "templates/footer.hamlet")
+
+postAltSalaR :: Handler Html
+postAltSalaR = do
+   maybeId <- lookupSession "ID"
+   idText <- case maybeId of
+                (Just id) -> do
+                    return id
+                _ -> do
+                    redirect LoginPageR
+   nome <- runInputPost $ ireq textField "sala_nome"
+   arid <- runInputPost $ ireq intField "id"
+   area <- runInputPost $ ireq intField "areaDesignada"
+   sid <- runInputPost $ ireq hiddenField "sid"
+   --sala <- runDB $ selectList [SalaId ==. sid] []
+   runDB $ Database.Persist.Postgresql.update sid [SalaNome Database.Persist.Postgresql.=. nome]
+   runDB $ Database.Persist.Postgresql.update sid [SalaArid Database.Persist.Postgresql.=. toSqlKey arid]
+   runDB $ Database.Persist.Postgresql.update sid [SalaArea Database.Persist.Postgresql.=. toSqlKey area]
+   defaultLayout $ do
+           addStylesheet $ (StaticR css_materialize_css)
+           addScript $ (StaticR js_jquery_js)
+           addScript $ (StaticR js_materialize_js)
+           toWidget $(juliusFile "templates/admin.julius")
+           toWidget $(luciusFile "templates/admin.lucius")
+           $(whamletFile "templates/header.hamlet")
+           [whamlet|
+            <main>
+               Sala Atualizada com Sucesso
+           |]
+           $(whamletFile "templates/footer.hamlet")
 
 postSalaPerfilR :: SalaId -> Handler Html
 postSalaPerfilR sid = do
