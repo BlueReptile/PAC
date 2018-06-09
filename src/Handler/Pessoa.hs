@@ -84,7 +84,7 @@ postPessoaR = do
                 redirect LoginPageR
         nome <- runInputPost $ ireq textField "pessoa_nome"
         cpf <- runInputPost $ ireq textField "pessoa_cpf"
-        cartaoID <- runInputPost $ ireq intField "cartaoID"
+        cartaoID <- runInputPost $ ireq textField "cartaoID"
         pid <- runDB $ insert $ Pessoa nome cartaoID cpf
         defaultLayout $ do
                 addStylesheet $ (StaticR css_materialize_css)
@@ -197,7 +197,7 @@ postAltPessoaR = do
                 _ -> do
                     redirect LoginPageR
    cpf <- runInputPost $ ireq textField "pessoa_cpf"
-   cartaoID <- runInputPost $ ireq intField "cartaoID"
+   cartaoID <- runInputPost $ ireq textField "cartaoID"
    pid <- runInputPost $ ireq hiddenField "pid"
    runDB $ Database.Persist.Postgresql.update pid [PessoaCpf Database.Persist.Postgresql.=. cpf]
    runDB $ Database.Persist.Postgresql.update pid [PessoaCartao Database.Persist.Postgresql.=. cartaoID]

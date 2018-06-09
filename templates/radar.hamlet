@@ -30,8 +30,8 @@
                         document.getElementById("#{fromSqlKey $ salaid}#{salanome}").innerHTML=data.sala;
                         console.log(document.getElementById("#{fromSqlKey $ salaid}#{salanome}").innerHTML);
 
-                        var listaDeSalasJson = data.sala.split("&");
-                        
+                        //var listaDeSalasJson = data.sala.split("&");
+
                       },
                       complete: function(data) {
                          console.log("complete")

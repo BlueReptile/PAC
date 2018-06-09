@@ -4,7 +4,6 @@
 {-# LANGUAGE QuasiQuotes #-}
 {-# LANGUAGE MultiParamTypeClasses #-}
 {-# LANGUAGE TypeFamilies #-}
-{-# LANGUAGE FlexibleInstances, UndecidableInstances, OverlappingInstances #-} --fazendo a magia acontecer
 module Handler.Radar where
 
 import Import
@@ -16,38 +15,7 @@ import Text.Lucius
 import Text.Julius
 import qualified Database.Esqueleto      as E
 import           Database.Esqueleto      ((^.))
-
---usado pra retirar o primeiro elemento de um selectList restrito
-safeHead :: [a] -> Maybe a
-safeHead [] = Nothing
-safeHead (x:_) = Just x
-
-class Vaziozar a where
-    vazio :: a
-instance (Num a) => Vaziozar a where
-    vazio = 0
-instance Vaziozar Text where
-    vazio = ""
-
---desemcapsula um Just campo do selectList
-desemcapsula :: (Vaziozar a) => Maybe a -> a
-desemcapsula (Just a) = a
-desemcapsula Nothing = vazio
-
---desemcapsula uma Just key do selectList
-desemcapsula2 :: (Maybe (b,c)) -> b
-desemcapsula2 (Just (b,c)) = b
-
-
-------Antes de class
---desemcapsula :: Maybe Text -> Text
---desemcapsula (Just a) = a
---desemcapsula Nothing = ""
-
---desemcapsula2 :: Maybe Int -> Int
---desemcapsula2 (Just a) = a
---desemcapsula2 Nothing = 0
-
+import Capsula
 
 
 
@@ -98,9 +66,11 @@ getRadarIndiceR ordemcampo automatico = do
 
     --pegando 2 campos de Area individualmente
     arealistinha <- runDB $ selectList [AreaOrdem ==. ordemcampo] [Asc AreaOrdem]
+    --uso no footer
     pegaareaNome <- case (safeHead(arealistinha)) of
                     Just (Entity _ resto) -> do return $ Just (areaNome resto)
                     _ -> do return Nothing
+    --uso no cassius
     pegaareaMapa <- case (safeHead(arealistinha)) of
                     Just (Entity _ resto) -> do return $ Just (areaMapa resto)
                     _ -> do return Nothing
@@ -112,24 +82,6 @@ getRadarIndiceR ordemcampo automatico = do
 
     debug <- do return $ desemcapsula2 $ pegaareaId
 
-    {-
-    salaLista <- runDB
-                $ E.select
-                $ E.from $ \(sala `E.InnerJoin` area) -> do
-                    E.on $ sala ^. SalaArea E.==. area ^. AreaId
-                    E.where_ (sala ^. SalaArea E.==. E.val (desemcapsula2 $ pegaareaId))
-                    --desemcapsula2 incrivelmente faz o trabalho de toSqlKey
-                    return
-                        ( sala ^. SalaId
-                        , sala ^. SalaArea
-                        , sala ^. SalaNome
-                        , sala ^. SalaPosx
-                        , sala ^. SalaPosy
-                        --depois inserir aqui tbm o campo de arid(ipdearduino) de sala, e mudar no debug E no radar.hamlet
-                        )
-    -}
-    --trocaCartaoPorNome :: Int -> Text
-    --pegaArduinoId::
     salaLista <- runDB
                 $ E.select
                 $ E.from $ \(area `E.InnerJoin` sala `E.InnerJoin` arduino) -> do

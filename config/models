@@ -6,8 +6,9 @@ Admin
 
 Pessoa
   nome        Text
-  cartao      Int
+  cartao      Text
   cpf         Text
+  UniqueCartao cartao
   deriving    Show
 
 Sala json

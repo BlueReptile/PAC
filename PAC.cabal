@@ -2,7 +2,7 @@
 --
 -- see: https://github.com/sol/hpack
 --
--- hash: a729fe8955b7c5da1333fae2a27b4052cbe848cb786a7286ff083a75a2904a1a
+-- hash: 4e36bf32d4b64e04d6d030ba804fe335f050c450d95ed824447a301c6cd659eb
 
 name:           PAC
 version:        0.0.0
@@ -69,6 +69,7 @@ library
     ghc-options: -Wall -fwarn-tabs -O2
   exposed-modules:
       Application
+      Capsula
       Foundation
       Handler.Admin
       Handler.Area
