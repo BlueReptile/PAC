@@ -9,7 +9,7 @@
         $forall (E.Value salaid, E.Value salaarea, E.Value salanome, E.Value salaposicx, E.Value salaposicy, E.Value arip) <- salaLista
             <span .windowTitle> #{salanome}
             <!-- id #{}#{} \/abaixo\/-->
-            <div ##{fromSqlKey $ salaid}#{salanome}> vazia
+            <div ##{fromSqlKey $ salaid}#{salanome}>
             <div .botaoeditar style="display:none;">
                 <a .btn-floating left >
                     <i .material-icons>zoom_out
@@ -27,17 +27,28 @@
                       method: 'GET',
                       dataType: 'json',
                       success: function(data) {
-                        document.getElementById("#{fromSqlKey $ salaid}#{salanome}").innerHTML=data.sala;
-                        console.log(document.getElementById("#{fromSqlKey $ salaid}#{salanome}").innerHTML);
-
-                        //var listaDeSalasJson = data.sala.split("&");
-
+                        var listaDeSalasJson = data.sala.split("&");
+                        for (i = 0; i < listaDeSalasJson.length; ++i) {
+                          var indexstring = listaDeSalasJson[i].toString();
+                          e = $.ajax({
+                              //aqui fica a parte engraçada <--------------------------------- (arrumar a rota tb)
+                              url: "http://localhost:8080/json/trocaCartaoPorNome/"+indexstring,
+                              method: 'GET',
+                              dataType: 'json',
+                              success: function(data) {
+                                document.getElementById("#{fromSqlKey $ salaid}#{salanome}").innerHTML+=data.nomedocara;
+                                document.getElementById("#{fromSqlKey $ salaid}#{salanome}").innerHTML+="<br>";
+                              },
+                              complete: function(data) { console.log("complete2") },
+                              error: function(data){alert("error2");}
+                          })
+                        };
                       },
                       complete: function(data) {
-                         console.log("complete")
+                         console.log("complete1")
                       },
                        error: function(data){
-                       alert("error");
+                       alert("error1");
                       }
                   });
                 })();

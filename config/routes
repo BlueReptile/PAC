@@ -37,6 +37,7 @@
 /area/editar          EditAreaR      POST
 
 /radar                 RadarR         GET
-!/radar/#Int/#Text     RadarIndiceR   GET
+!/radar/#Int/#Text RadarIndiceR GET
 
+/json/trocaCartaoPorNome/             JeitinhoBrasileiroR          GET
 /json/trocaCartaoPorNome/#Text        JsonTrocaCartaoPorNomeR      GET

@@ -24,3 +24,7 @@ getJsonTrocaCartaoPorNomeR cartaorecebido = do
 
     sendStatusJSON ok200 (object["nomedocara" .= pegacaraNome])
 --sendStatusJSON noContent204 (object[])
+
+getJeitinhoBrasileiroR :: Handler Value
+getJeitinhoBrasileiroR = do
+   sendStatusJSON noContent204 (object[])
