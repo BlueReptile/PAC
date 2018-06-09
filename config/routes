@@ -31,6 +31,8 @@
 /area                  AreaR          GET POST
 !/area/#AreaId         AreaPerfilR    GET POST
 /area/lista            ListaAreaR     GET
+/area/patch            AltAreaR       POST
+!/area/editar          EditAreaR      POST
 
 /radar                 RadarR         GET
 !/radar/#Int/#Text     RadarIndiceR   GET
