@@ -5,9 +5,11 @@
 
 / HomeR GET
 
-/admin                 AdminR         GET POST
-!/admin/#AdminId       ADMPerfilR     GET POST
-/admin/lista           ListaAdminR    GET
+/admin                  AdminR         GET POST
+!/admin/#AdminId        ADMPerfilR     GET POST
+/admin/lista            ListaAdminR    GET
+/admin/patch            AltAdminR      POST
+!/admin/editar          EditAdminR     POST
 
 /sala                  SalaR          GET POST
 !/sala/#SalaId         SalaPerfilR    GET POST
