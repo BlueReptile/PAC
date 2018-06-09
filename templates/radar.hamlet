@@ -19,6 +19,7 @@
             <script>
                 (function atualiza#{salanome}(){
                   console.log("oi,me chamo #{salanome}");
+                  console.log("@{HomeR}"+"json/trocaCartaoPorNome/");
                   e = document.getElementById("#{fromSqlKey $ salaid}#{salanome}").innerHTML;
                   console.log("oque tenho dentro ="+e);
                   console.log("arip ="+ "#{arip}");
@@ -32,15 +33,17 @@
                           var indexstring = listaDeSalasJson[i].toString();
                           e = $.ajax({
                               //aqui fica a parte engraçada <--------------------------------- (arrumar a rota tb)
-                              url: "http://localhost:8080/json/trocaCartaoPorNome/"+indexstring,
+                              //url: "http://localhost:8080/json/trocaCartaoPorNome/"+indexstring,
+                              url: "@{HomeR}"+"json/trocaCartaoPorNome/"+indexstring,
                               method: 'GET',
                               dataType: 'json',
                               success: function(data) {
                                 document.getElementById("#{fromSqlKey $ salaid}#{salanome}").innerHTML+=data.nomedocara;
                                 document.getElementById("#{fromSqlKey $ salaid}#{salanome}").innerHTML+="<br>";
+                                console.log("printei");
                               },
-                              complete: function(data) { console.log("complete2") },
-                              error: function(data){alert("error2");}
+                              complete: function(data) { console.log("complete2"); },
+                              error: function(data){console.log("error2");}
                           })
                         };
                       },
