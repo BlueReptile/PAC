@@ -7,12 +7,59 @@
   <div .janela onmouseover=drag(this) onmouseout=desfoca(this)>
       <center>
         $forall (E.Value salaid, E.Value salaarea, E.Value salanome, E.Value salaposicx, E.Value salaposicy, E.Value arip) <- salaLista
-          <span .windowTitle> #{salanome}
-          <div .pessoas> Pessoa X
-          <div .pessoas> Pessoa Y
-          <div .pessoas> Pessoa Z
-          <div .botaoeditar style="display:none;">
-              <a .btn-floating left >
-                  <i .material-icons>zoom_out
-              <a .btn-floating right>
-                  <i .material-icons>zoom_in
+            <span .windowTitle> #{salanome}
+            <!-- id #{}#{} \/abaixo\/-->
+            <div ##{fromSqlKey $ salaid}#{salanome}> vazia
+            <div .botaoeditar style="display:none;">
+                <a .btn-floating left >
+                    <i .material-icons>zoom_out
+                <a .btn-floating right>
+                    <i .material-icons>zoom_in
+            <!-- O motivo do Script ficar aqui é que o Julius aparentemente não itera listas, apenas o hamlet -->
+            <script>
+                (function atualiza#{salanome}(){
+                  console.log("oi,me chamo #{salanome}");
+                  e = document.getElementById("#{fromSqlKey $ salaid}#{salanome}").innerHTML;
+                  console.log("oque tenho dentro ="+e);
+                  console.log("arip ="+ "#{arip}");
+                  e = $.ajax({
+                      url: "http://#{arip}/sala",
+                      method: 'GET',
+                      dataType: 'json',
+                      success: function(data) {
+                        document.getElementById("#{fromSqlKey $ salaid}#{salanome}").innerHTML=data.sala;
+                        console.log(document.getElementById("#{fromSqlKey $ salaid}#{salanome}").innerHTML);
+
+                        var listaDeSalasJson = data.sala.split("&");
+                        
+                      },
+                      complete: function(data) {
+                         console.log("complete")
+                      },
+                       error: function(data){
+                       alert("error");
+                      }
+                  });
+                })();
+
+
+
+
+
+
+
+  <!-- janela de debug -->
+  <div .janela onmouseover=drag(this) onmouseout=desfoca(this)>
+    <center>
+        <span .windowTitle> debugz
+            <div .debugclass> vazia
+            <div .botaoeditar style="display:none;">
+                <a .btn-floating left >
+                    <i .material-icons>zoom_out
+                <a .btn-floating right>
+                    <i .material-icons>zoom_in
+            <!-- O motivo do Script ficar aqui é que o Julius aparentemente não itera listas, apenas o hamlet -->
+            <script>
+                function atualizadebugz(){
+                  console.log("oi,me chamo debugz");
+                }
