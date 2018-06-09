@@ -9,18 +9,20 @@
 !/admin/#AdminId        ADMPerfilR     GET POST
 /admin/lista            ListaAdminR    GET
 /admin/patch            AltAdminR      POST
-!/admin/editar          EditAdminR     POST
+/admin/editar          EditAdminR     POST
 
 /sala                  SalaR          GET POST
 !/sala/#SalaId         SalaPerfilR    GET POST
 /sala/lista            ListaSalaR     GET
 /sala/patch            AltSalaR       POST
-!/sala/editar          EditSalaR      POST
+/sala/editar          EditSalaR      POST
 
 
 /pessoa                PessoaR        GET POST
 !/pessoa/#PessoaId     PessoaPerfilR  GET POST
 /pessoa/lista          ListaPessoaR   GET
+/pessoa/patch          AltPessoaR     POST
+/pessoa/editar         EditPessoaR    POST
 
 /loginPage             LoginPageR     GET
 /login                 AdminLoginR    POST
@@ -32,7 +34,7 @@
 !/area/#AreaId         AreaPerfilR    GET POST
 /area/lista            ListaAreaR     GET
 /area/patch            AltAreaR       POST
-!/area/editar          EditAreaR      POST
+/area/editar          EditAreaR      POST
 
 /radar                 RadarR         GET
 !/radar/#Int/#Text     RadarIndiceR   GET

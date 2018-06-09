@@ -11,7 +11,8 @@ import Database.Persist.Postgresql
 import Text.Lucius
 import Text.Julius
 import Prelude
-import Database.Esqueleto
+import qualified Database.Esqueleto      as E
+import           Database.Esqueleto      ((^.))
 import Network.HTTP.Simple
 
 
@@ -82,7 +83,7 @@ postPessoaR = do
             _ -> do
                 redirect LoginPageR
         nome <- runInputPost $ ireq textField "pessoa_nome"
-        cpf <- runInputPost $ ireq textField "pessoa_nome"
+        cpf <- runInputPost $ ireq textField "pessoa_cpf"
         cartaoID <- runInputPost $ ireq intField "cartaoID"
         pid <- runDB $ insert $ Pessoa nome cartaoID cpf
         defaultLayout $ do
@@ -100,14 +101,14 @@ postPessoaR = do
 
 
 getPessoaPerfilR :: PessoaId -> Handler Html
-getPessoaPerfilR sid = do
+getPessoaPerfilR pid = do
     maybeId <- lookupSession "ID"
     idText <- case maybeId of
             (Just id) -> do
                 return id
             _ -> do
                 redirect LoginPageR
-    pessoa <- runDB $ get404 sid
+    pessoa <- runDB $ get404 pid
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
@@ -116,22 +117,112 @@ getPessoaPerfilR sid = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
-          <main>
-            <h1>
-                Pessoas #{pessoaNome pessoa}
+         <main>
+          <br>
+           <br>
+            <div class="row">
+              <div class="col s6 offset-s3 valign">
+               <div class="card blue-grey darken-1">
+                <div class="card-content white-text">
+                 <span class="card-title">PESSOA</span>
+                 <br>
+                     <p> Nome da Pessoa : #{pessoaNome pessoa}
+                     <p> CPF da Pessoa : #{pessoaCpf pessoa}
+                     <p> Cartão da Pessoa : #{pessoaCartao pessoa}
+                <br>
+                <div class="card-action">
+                  <form action=@{EditPessoaR}  method=post>
+                   <input type="hidden" id="pid" name="pid" value=#{fromSqlKey pid}>
+                   <button class="btn waves-effect waves-light" type="submit" name="action">Editar
+                     <i class="material-icons right">send</i>
+        |]
+        $(whamletFile "templates/footer.hamlet")
+        $(whamletFile "templates/footer.hamlet")
+
+postEditPessoaR :: Handler Html
+postEditPessoaR = do
+      maybeId <- lookupSession "ID"
+      idText <- case maybeId of
+            (Just id) -> do
+                return id
+            _ -> do
+                redirect LoginPageR
+      pid  <- runInputPost $ ireq hiddenField "pid"
+      pessoa <- runDB $ selectList [SalaId Database.Persist.Postgresql.==. pid] []
+      arduinos <- runDB $ selectList [] [Asc ArduinoName]
+      defaultLayout $ do
+        addStylesheet $ (StaticR css_materialize_css)
+        addScript $ (StaticR js_jquery_js)
+        addScript $ (StaticR js_jquery_validate_js)
+        addScript $ (StaticR js_additional_methods_js)
+        addScript $ (StaticR js_materialize_js)
+        toWidget $(juliusFile "templates/pessoa.julius")
+        toWidget $(luciusFile "templates/admin.lucius")
+        $(whamletFile "templates/header.hamlet")
+        [whamlet|
+        <main>
+         <div class="row">
+          <div class="col s6 offset-s3 valign">
+            <div class="card blue-grey darken-1">
+              <div class="card-content white-text">
+                <span class="card-title">Cadastro de Pessoa</span>
+                  <form action=@{AltPessoaR} id="pessoaForm" name="pessoaForm" novalidate="novalidate" method=post>
+                   <div class="input-field">
+                     <input value="" name="pessoa_cpf" id="pessoa_cpf" type="text" class="validate" onkeyup="">
+                     <label class="active white-text" for="pessoa_cpf">CPF
+                   <label class="white-text">Arduino para Escanear o Cartão
+                   <br>
+                   <select id="arduinoIp" name="arduinoIp">
+                    <option value="" disabled selected>Qual Arduino?
+                    $forall (Entity arid arduino) <- arduinos
+                      <option value="#{arduinoIp arduino}">#{arduinoName arduino}
+                   <div class="input-field">
+                     <input class="white-text" value="CartãoId" id="cartaoID" name="cartaoID" type="text" class="validate" readonly="readonly">
+                     <label class="white-text" for="cartaoID">Cartão da pessoa
+                     <button class="btn waves-effect waves-light" id="UpdateID" type="button" onclick="updateID();">Atualizar RFID
+                     <br>
+                     <br>
+                   <input type="hidden" id="pid" name="pid" value=#{fromSqlKey pid}>
+                   <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
+                    <i class="material-icons right">send</i>
         |]
         $(whamletFile "templates/footer.hamlet")
 
+postAltPessoaR :: Handler Html
+postAltPessoaR = do
+   maybeId <- lookupSession "ID"
+   idText <- case maybeId of
+                (Just id) -> do
+                    return id
+                _ -> do
+                    redirect LoginPageR
+   cpf <- runInputPost $ ireq textField "pessoa_cpf"
+   cartaoID <- runInputPost $ ireq intField "cartaoID"
+   pid <- runInputPost $ ireq hiddenField "pid"
+   runDB $ Database.Persist.Postgresql.update pid [PessoaCpf Database.Persist.Postgresql.=. cpf]
+   runDB $ Database.Persist.Postgresql.update pid [PessoaCartao Database.Persist.Postgresql.=. cartaoID]
+   defaultLayout $ do
+           addStylesheet $ (StaticR css_materialize_css)
+           addScript $ (StaticR js_jquery_js)
+           addScript $ (StaticR js_materialize_js)
+           toWidget $(juliusFile "templates/admin.julius")
+           toWidget $(luciusFile "templates/admin.lucius")
+           $(whamletFile "templates/header.hamlet")
+           [whamlet|
+            <main>
+               Pessoa Atualizada com Sucesso
+           |]
+           $(whamletFile "templates/footer.hamlet")
 
 postPessoaPerfilR :: PessoaId -> Handler Html
-postPessoaPerfilR sid = do
+postPessoaPerfilR pid = do
     maybeId <- lookupSession "ID"
     idText <- case maybeId of
             (Just id) -> do
                 return id
             _ -> do
                 redirect LoginPageR
-    runDB $ Database.Persist.Postgresql.delete sid
+    runDB $ Database.Persist.Postgresql.delete pid
     redirect ListaPessoaR
 
 getListaPessoaR :: Handler Html
