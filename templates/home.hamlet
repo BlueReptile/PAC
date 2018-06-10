@@ -5,7 +5,8 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper light-blue darken-2">
-           <a class="left brand-logo" href=@{HomeR}> <img class="left" img src=@{StaticR head_chan_png} style="width:60px;height:60px;"></img>#{idText}</a>
+          <a class="left brand-logo" href=@{HomeR}> <img class="left" img src=@{StaticR head_chan_png} style="width:60px;height:60px;"></img>#{idText}</a>
+          <a href="#" data-activates="slide-out" class="button-collapse right hide-on-large-only"><i class="material-icons">menu</i></a>
           <ul class="right hide-on-med-and-down">
               $if idText /= ""
                 <li><a class="waves-effect waves-light btn" href=@{RadarR}><i class="material-icons left">visibility</i>Radar</a></li>
@@ -19,7 +20,6 @@
                 <li><a class="waves-effect waves-light btn" href=@{AdminLogoutR}>Logout<i class="material-icons right">power_settings_new</i></a></li>
               $else
                 <li><a class="waves-effect waves-light btn" href=@{LoginPageR}>Login<i class="material-icons right">send</i></a></li>
-
 
 <ul id="dropadmins" class="dropdown-content white-text">
     <li><a href=@{AdminR}>Cadastro de Admins</a></li>
@@ -40,6 +40,57 @@
     <li><a href=@{PessoaR}>Cadastro de Pessoas</a></li>
     <li class="divider"></li>
     <li><a href=@{ListaPessoaR}>Lista de Pessoas</a></li>
+
+
+<ul id="slide-out" class="side-nav hide-on-large-only">
+       $if idText /= ""
+        <li><a class="waves-effect waves-light btn" href=@{RadarR}><i class="material-icons left">visibility</i>Radar</a></li>
+       <li class="active"><a href=@{HomeR}><i class="material-icons left">home</i>Home</a></li>
+       $if idText /= ""
+         <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+           <li>
+            <a class="collapsible-header">Administrador<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a href=@{AdminR}>Cadastro de Admins</a></li>
+                <li class="divider"></li>
+                <li><a href=@{ListaAdminR}>Lista de Admins</a></li>
+
+         <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+           <li>
+            <a class="collapsible-header">Sala<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a href=@{SalaR}>Cadastro de Sala</a></li>
+                <li class="divider"></li>
+                <li><a href=@{ListaSalaR}>Lista de Salas</a></li>
+
+         <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+           <li>
+            <a class="collapsible-header">Area<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a href=@{AreaR}>Cadastro de Area</a></li>
+                <li class="divider"></li>
+                <li><a href=@{ListaAreaR}>Lista de Areas</a></li>
+
+         <li class="no-padding">
+          <ul class="collapsible collapsible-accordion">
+           <li>
+            <a class="collapsible-header">Pessoa<i class="material-icons">arrow_drop_down</i></a>
+            <div class="collapsible-body">
+              <ul>
+                <li><a href=@{PessoaR}>Cadastro de Pessoas</a></li>
+                <li class="divider"></li>
+                <li><a href=@{ListaPessoaR}>Lista de Pessoas</a></li>
+         <li class=""><a href=@{RegistroR}><i class="material-icons left">insert_drive_file</i>Registros</a></li>
+         <li><a class="waves-effect waves-light btn" href=@{AdminLogoutR}>Logout<i class="material-icons right">power_settings_new</i></a></li>
+       $else
+         <li><a class="waves-effect waves-light btn" href=@{LoginPageR}>Login<i class="material-icons right">send</i></a></li>
+
 
 <main>
   <img src=@{StaticR haskellchan_render_png} alt="Haskell-chan" class="center" style="width:204px;height:442px;">
