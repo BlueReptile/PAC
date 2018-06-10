@@ -20,7 +20,7 @@
                 <li class=""><a href=@{RegistroR}><i class="material-icons left">insert_drive_file</i>Registros</a>
                 <li><a class="waves-effect waves-light btn" href=@{AdminLogoutR}>Logout<i class="material-icons right">power_settings_new</i></a>
               $else
-                <li><a class="waves-effect waves-light btn" href=@{LoginPageR}>Login<i class="material-icons right">send</i>
+                <li><a class="waves-effect waves-light btn" href=@{LoginPageR}>Login<i class="material-icons right">send</i></a>
 
 <ul id="dropadmins" class="dropdown-content white-text">
       <li><a href=@{AdminR}>Cadastro de Admins</a>
@@ -90,4 +90,4 @@
          <li class=""><a href=@{RegistroR}><i class="material-icons left">insert_drive_file</i>Registros</a>
          <li><a class="waves-effect waves-light btn" href=@{AdminLogoutR}>Logout<i class="material-icons right">power_settings_new</i></a>
        $else
-         <li><a class="waves-effect waves-light btn" href=@{LoginPageR}>Login<i class="material-icons right">send</i>
+         <li><a class="waves-effect waves-light btn" href=@{LoginPageR}>Login<i class="material-icons right">send</i></a>
