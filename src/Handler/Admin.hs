@@ -212,6 +212,7 @@ getListaAdminR = do
             _ -> do
                 redirect LoginPageR
     admins <- runDB $ selectList [] [Asc AdminLogin]
+    qtadmins <- runDB $ count ([] :: [Filter Admin])
     defaultLayout $ do
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
@@ -235,7 +236,9 @@ getListaAdminR = do
                                         <a href=@{ADMPerfilR aid}>
                                             #{adminLogin admin}
                                     <td>
+                                      $if (qtadmins >= 2)
                                         <form action=@{ADMPerfilR aid} method=post>
                                             <input class="btn waves-effect waves-light" type="submit" value="Apagar">
+                                    <li class="divider"></li>
         |]
         $(whamletFile "templates/footer.hamlet")
