@@ -1,3 +1,3 @@
 <main>
-  <h3> Metodo invalido, voce tentou usar POST em uma pagina GET ou GET em uma pagina POSTMétodo inválido: você quis GET mas só tenho POST. Pega esse POST ai.
+  <h3> Método inválido: você quis GET mas só tenho POST. Pega esse POST ai.
   <img src=@{StaticR poste_jpg} alt="Poste" class="center" style="width:400px;height:400px;">
