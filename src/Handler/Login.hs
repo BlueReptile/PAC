@@ -27,6 +27,7 @@ getLoginPageR = do
             return ""
     (widget,enctype) <- generateFormPost formAdmin
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Login"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
@@ -68,6 +69,7 @@ postAdminLoginR = do
                                         setSession "ID" $ login
                                         redirect HomeR
                              _ -> defaultLayout $ do
+                                 setTitle "ⓅⒶⒸ - Login"
                                  addStylesheet $ (StaticR css_materialize_css)
                                  addScript $ (StaticR js_jquery_js)
                                  addScript $ (StaticR js_materialize_js)

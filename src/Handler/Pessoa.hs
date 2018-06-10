@@ -33,6 +33,7 @@ getPessoaR = do
     arduinos <- runDB $ selectList [] [Asc ArduinoName]
     cardid <- httpLBS "http://187.21.121.25:8081/card"
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Pessoa"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_jquery_validate_js)
@@ -87,6 +88,7 @@ postPessoaR = do
         cartaoID <- runInputPost $ ireq textField "cartaoID"
         pid <- runDB $ insert $ Pessoa nome cartaoID cpf
         defaultLayout $ do
+                setTitle "ⓅⒶⒸ - Pessoa"
                 addStylesheet $ (StaticR css_materialize_css)
                 addScript $ (StaticR js_jquery_js)
                 addScript $ (StaticR js_materialize_js)
@@ -110,6 +112,7 @@ getPessoaPerfilR pid = do
                 redirect LoginPageR
     pessoa <- runDB $ get404 pid
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Pessoa"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
@@ -151,6 +154,7 @@ postEditPessoaR = do
       pessoa <- runDB $ selectList [SalaId Database.Persist.Postgresql.==. pid] []
       arduinos <- runDB $ selectList [] [Asc ArduinoName]
       defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Pessoa"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_jquery_validate_js)
@@ -202,6 +206,7 @@ postAltPessoaR = do
    runDB $ Database.Persist.Postgresql.update pid [PessoaCpf Database.Persist.Postgresql.=. cpf]
    runDB $ Database.Persist.Postgresql.update pid [PessoaCartao Database.Persist.Postgresql.=. cartaoID]
    defaultLayout $ do
+           setTitle "ⓅⒶⒸ - Pessoa"
            addStylesheet $ (StaticR css_materialize_css)
            addScript $ (StaticR js_jquery_js)
            addScript $ (StaticR js_materialize_js)
@@ -235,6 +240,7 @@ getListaPessoaR = do
                 redirect LoginPageR
     pessoas <- runDB $ selectList [] [Asc PessoaNome]
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Pessoa"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)

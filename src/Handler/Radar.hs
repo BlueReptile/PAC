@@ -33,6 +33,7 @@ getRadarR = do
                     _ -> return Nothing
     --ack <- return $ show "a"
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Radar"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
@@ -102,6 +103,7 @@ getRadarIndiceR ordemcampo automatico = do
 
 
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Radar"
         addStylesheet $ (StaticR css_materialize_css)
         --addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)

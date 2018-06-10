@@ -31,6 +31,7 @@ getSalaR = do
     arduinos <- runDB $ selectList [] [Asc ArduinoName]
     areas <- runDB $ selectList [] [Asc AreaOrdem]
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Sala"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
@@ -86,6 +87,7 @@ postSalaR = do
         let size = (Just 1)
         sid <- runDB $ insert $ Sala nome (toSqlKey id) (toSqlKey area) posx posy size
         defaultLayout $ do
+                setTitle "ⓅⒶⒸ - Sala"
                 addStylesheet $ (StaticR css_materialize_css)
                 addScript $ (StaticR js_jquery_js)
                 addScript $ (StaticR js_materialize_js)
@@ -120,6 +122,7 @@ getSalaPerfilR sid = do
                         , area ^. AreaNome
                         )
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Sala"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
@@ -165,6 +168,7 @@ postEditSalaR = do
      arduinos <- runDB $ selectList [] [Asc ArduinoName]
      areas <- runDB $ selectList [] [Asc AreaOrdem]
      defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Sala"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
@@ -223,6 +227,7 @@ postAltSalaR = do
    runDB $ Database.Persist.Postgresql.update sid [SalaArid Database.Persist.Postgresql.=. toSqlKey arid]
    runDB $ Database.Persist.Postgresql.update sid [SalaArea Database.Persist.Postgresql.=. toSqlKey area]
    defaultLayout $ do
+           setTitle "ⓅⒶⒸ - Sala"
            addStylesheet $ (StaticR css_materialize_css)
            addScript $ (StaticR js_jquery_js)
            addScript $ (StaticR js_materialize_js)
@@ -256,6 +261,7 @@ getListaSalaR = do
                 redirect LoginPageR
     salas <- runDB $ selectList [] [Asc SalaNome]
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Sala"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)

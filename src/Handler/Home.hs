@@ -18,6 +18,7 @@ getHomeR = do
             _ -> do
                 return ""
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Home"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)

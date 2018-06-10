@@ -31,6 +31,7 @@ getAdminR = do
                     redirect LoginPageR
     (widget,enctype) <- generateFormPost formAdmin
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Admin"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
@@ -67,6 +68,7 @@ postAdminR = do
         FormSuccess admin -> do
             aid <- runDB $ insert admin
             defaultLayout $ do
+                setTitle "ⓅⒶⒸ - Admin"
                 addStylesheet $ (StaticR css_materialize_css)
                 addScript $ (StaticR js_jquery_js)
                 addScript $ (StaticR js_materialize_js)
@@ -91,6 +93,7 @@ getADMPerfilR aid = do
                 redirect LoginPageR
     admin <- runDB $ get404 aid
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Admin"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
@@ -133,6 +136,7 @@ postEditAdminR = do
      aid <- runInputPost $ ireq hiddenField "aid"
      admin <- runDB $ selectList [AdminId ==. aid] []
      defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Admin"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
@@ -178,6 +182,7 @@ postAltAdminR = do
    admin <- runDB $ selectList [AdminId ==. aid] []
    runDB $ update aid [AdminPass =. senha]
    defaultLayout $ do
+           setTitle "ⓅⒶⒸ - Admin"
            addStylesheet $ (StaticR css_materialize_css)
            addScript $ (StaticR js_jquery_js)
            addScript $ (StaticR js_materialize_js)
@@ -214,6 +219,7 @@ getListaAdminR = do
     admins <- runDB $ selectList [] [Asc AdminLogin]
     qtadmins <- runDB $ count ([] :: [Filter Admin])
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Admin"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)

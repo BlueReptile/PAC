@@ -32,6 +32,7 @@ getAreaR = do
                     redirect LoginPageR
     (widget,enctype) <- generateFormPost formArea
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Area"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
@@ -68,6 +69,7 @@ postAreaR = do
         FormSuccess area -> do
             areaid <- runDB $ insert area
             defaultLayout $ do
+                setTitle "ⓅⒶⒸ - Area"
                 addStylesheet $ (StaticR css_materialize_css)
                 addScript $ (StaticR js_jquery_js)
                 addScript $ (StaticR js_materialize_js)
@@ -92,6 +94,7 @@ getListaAreaR = do
                 redirect LoginPageR
     areas <- runDB $ selectList [] [Asc AreaOrdem]
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Area"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
@@ -130,6 +133,7 @@ getAreaPerfilR aid = do
                 redirect LoginPageR
     area <- runDB $ get404 aid
     defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Area"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
@@ -168,6 +172,7 @@ postEditAreaR = do
      aid <- runInputPost $ ireq hiddenField "aid"
      area <- runDB $ selectList [AdminId ==. aid] []
      defaultLayout $ do
+        setTitle "ⓅⒶⒸ - Area"
         addStylesheet $ (StaticR css_materialize_css)
         addScript $ (StaticR js_jquery_js)
         addScript $ (StaticR js_materialize_js)
@@ -217,6 +222,7 @@ postAltAreaR = do
    runDB $ update aid [AreaMapa =. link]
    runDB $ update aid [AreaOrdem =. seq]
    defaultLayout $ do
+           setTitle "ⓅⒶⒸ - Area"
            addStylesheet $ (StaticR css_materialize_css)
            addScript $ (StaticR js_jquery_js)
            addScript $ (StaticR js_materialize_js)
