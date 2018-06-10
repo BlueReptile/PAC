@@ -110,6 +110,7 @@ getRadarIndiceR ordemcampo automatico = do
         toWidget $(cassiusFile "templates/radar.cassius")
         $(whamletFile "templates/header.hamlet")
         $(whamletFile "templates/radar.hamlet")
+        {-
         toWidget $[whamlet|
           Debug:
           <br>
@@ -119,4 +120,5 @@ getRadarIndiceR ordemcampo automatico = do
               #{fromSqlKey $ salaid} #{fromSqlKey $ salaarea} #{salanome} #{desemcapsula salaposicx} #{desemcapsula salaposicy}
               <br> ip #{arip}
         |]
+        -}
         $(whamletFile "templates/footerRadar.hamlet")
