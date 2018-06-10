@@ -50,20 +50,22 @@ getSalaR = do
                    <div class="input-field">
                      <label class="active white-text" for="sala_nome">Nome da Sala</label>
                      <input value="" name="sala_nome" id="sala_nome" type="text" class="validate">
-                   <label>Arduino</label>
+
                     <br>
+                     <div class="input-field">
                       <select name="id" >
                         <option value="" disabled selected>Qual Arduino?</option>
                         $forall (Entity arid arduino) <- arduinos
                           <option value="#{fromSqlKey $ arid}">#{arduinoName arduino}</option>
+                      <label class="white-text">Arduino</label>
 
 
-                      <label>Area designada</label>
-                      <select id="areaDesignada" name="areaDesignada">
+                     <div class="input-field">
+                       <select id="areaDesignada" name="areaDesignada">
                          <option value="" disabled selected>Qual Area?</option>
                          $forall (Entity areaid restoarea) <- areas
                            <option value="#{fromSqlKey $ areaid}">#{areaNome restoarea}</option>
-
+                       <label class="white-text">Area designada</label>
 
                     <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
                       <i class="material-icons right">send</i>

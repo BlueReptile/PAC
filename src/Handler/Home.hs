@@ -24,5 +24,6 @@ getHomeR = do
         addScript $ (StaticR js_materialize_js)
         toWidget $(juliusFile "templates/home.julius")
         toWidget $(luciusFile "templates/home.lucius")
-        $(whamletFile "templates/home.hamlet")
+        $(whamletFile "templates/header.hamlet")
+        $(whamletFile "templates/haskellchan.hamlet")
         $(whamletFile "templates/footer.hamlet")
