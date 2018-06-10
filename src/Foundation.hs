@@ -41,6 +41,70 @@ instance Yesod App where
         $(widgetFile "header")
         $(widgetFile "error/404")
         $(widgetFile "footer")
+    errorHandler (InvalidArgs makeLogger) = do
+      maybeId <- lookupSession "ID"
+      idText <- case maybeId of
+          (Just id) -> do
+              return id
+          _ -> do
+              return ""
+      fmap toTypedContent $ defaultLayout $ do
+        addStylesheet $ (StaticR css_materialize_css)
+        addScript $ (StaticR js_jquery_js)
+        addScript $ (StaticR js_materialize_js)
+        toWidget $(juliusFile "templates/admin.julius")
+        toWidget $(luciusFile "templates/admin.lucius")
+        $(widgetFile "header")
+        $(widgetFile "error/sql")
+        $(widgetFile "footer")
+    errorHandler (InternalError makeLogger) = do
+      maybeId <- lookupSession "ID"
+      idText <- case maybeId of
+          (Just id) -> do
+              return id
+          _ -> do
+              return ""
+      fmap toTypedContent $ defaultLayout $ do
+        addStylesheet $ (StaticR css_materialize_css)
+        addScript $ (StaticR js_jquery_js)
+        addScript $ (StaticR js_materialize_js)
+        toWidget $(juliusFile "templates/admin.julius")
+        toWidget $(luciusFile "templates/admin.lucius")
+        $(widgetFile "header")
+        $(widgetFile "error/internalerror")
+        $(widgetFile "footer")
+    errorHandler (PermissionDenied makeLogger)= do
+      maybeId <- lookupSession "ID"
+      idText <- case maybeId of
+          (Just id) -> do
+              return id
+          _ -> do
+              return ""
+      fmap toTypedContent $ defaultLayout $ do
+        addStylesheet $ (StaticR css_materialize_css)
+        addScript $ (StaticR js_jquery_js)
+        addScript $ (StaticR js_materialize_js)
+        toWidget $(juliusFile "templates/admin.julius")
+        toWidget $(luciusFile "templates/admin.lucius")
+        $(widgetFile "header")
+        $(widgetFile "error/denied")
+        $(widgetFile "footer")
+    errorHandler (BadMethod makeLogger)= do
+      maybeId <- lookupSession "ID"
+      idText <- case maybeId of
+          (Just id) -> do
+              return id
+          _ -> do
+              return ""
+      fmap toTypedContent $ defaultLayout $ do
+        addStylesheet $ (StaticR css_materialize_css)
+        addScript $ (StaticR js_jquery_js)
+        addScript $ (StaticR js_materialize_js)
+        toWidget $(juliusFile "templates/admin.julius")
+        toWidget $(luciusFile "templates/admin.lucius")
+        $(widgetFile "header")
+        $(widgetFile "error/bad")
+        $(widgetFile "footer")
     errorHandler other = defaultErrorHandler other
 
 
