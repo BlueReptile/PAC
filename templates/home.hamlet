@@ -5,8 +5,7 @@
 <div class="navbar-fixed">
     <nav>
         <div class="nav-wrapper light-blue darken-2">
-           <a class="left brand-logo" href=@{HomeR}>#{idText}</a>
-           <i class="left" img src=@{StaticR head_chan_png} style="width:60px;height:60px;"></i>
+           <a class="left brand-logo" href=@{HomeR}> <img class="left" img src=@{StaticR head_chan_png} style="width:60px;height:60px;"></img>#{idText}</a>
           <ul class="right hide-on-med-and-down">
               $if idText /= ""
                 <li><a class="waves-effect waves-light btn" href=@{RadarR}><i class="material-icons left">visibility</i>Radar</a></li>
