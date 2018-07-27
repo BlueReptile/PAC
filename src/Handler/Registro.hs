@@ -39,6 +39,8 @@ getRegistroR = do
                         ( registro ^. RegistroId
                         , sala  ^. SalaNome
                         , registro ^. RegistroDatahora
+                        , registro ^. RegistroEntrada
+                        , registro ^. RegistroAlert
                         , pessoa ^. PessoaNome
                         )
 
@@ -61,7 +63,7 @@ getRegistroR = do
                                     Registros
                                 <th>
                         <tbody>
-                            $forall (E.Value registroid, E.Value nomesala, E.Value datahora, E.Value nomepessoa) <- registros
+                            $forall (E.Value registroid, E.Value nomesala, E.Value datahora, E.Value direcao, E.Value alert, E.Value nomepessoa) <- registros
                                 <tr>
                                  <li class="divider"></li>
                                     <td>
@@ -70,6 +72,8 @@ getRegistroR = do
                                                 #{nomesala}
                                             #{nomepessoa}
                                             #{formatePraMim $ datahora}
+                                            #{direcao}
+                                            #{alert}
                                         <li class="divider"></li>
         |]
         $(whamletFile "templates/footer.hamlet")

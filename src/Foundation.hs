@@ -8,10 +8,13 @@
 module Foundation where
 
 import Import.NoFoundation
+import Data.Time.Format
 import Database.Persist.Sql (ConnectionPool, runSqlPool)
 import Yesod.Core.Types     (Logger)
 import Text.Lucius
 import Text.Julius
+import Web.HttpApiData
+import Data.Aeson (decodeStrict, encode)
 
 data App = App
     { appSettings    :: AppSettings
@@ -124,3 +127,8 @@ instance RenderMessage App FormMessage where
 
 instance HasHttpManager App where
     getHttpManager = appHttpManager
+
+
+instance PathPiece UTCTime where
+  fromPathPiece = decodeStrict . encodeUtf8
+  toPathPiece   = toStrict . decodeUtf8 . encode

@@ -30,6 +30,7 @@ Registro
   pessoa      PessoaId
   datahora    UTCTime
   entrada     Bool
+  alert       Bool
   deriving    Show
 
 Area
