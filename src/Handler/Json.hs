@@ -61,3 +61,11 @@ postUpdateIpR ip = do
 postInsertRegistroR :: SalaId -> PessoaId -> UTCTime -> Bool -> Bool -> Handler Value
 postInsertRegistroR salaid pessoaid timestamp direcao alert = do
   Import.undefined
+
+
+
+postPosicaoR :: SalaId -> Int -> Int -> Handler Value
+postPosicaoR sid posix posiy = do
+  runDB $ Database.Persist.Postgresql.update sid [SalaPosx Database.Persist.Postgresql.=. Just posix]
+  runDB $ Database.Persist.Postgresql.update sid [SalaPosy Database.Persist.Postgresql.=. Just posiy]
+  sendStatusJSON ok200 (object[])

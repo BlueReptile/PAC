@@ -45,3 +45,5 @@
 /json/arduino/getsala/#Text  GetSalaIdR      GET
 /json/arduino/atualizaarduino/#Text  UpdateIpR       POST
 /json/arduino/insereregistro/#SalaId/#PessoaId/#UTCTime/#Bool/#Bool InsertRegistroR POST
+
+/json/PosicaoR/#SalaId/#Int/#Int    PosicaoR    POST
