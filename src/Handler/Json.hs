@@ -64,8 +64,8 @@ postInsertRegistroR salaid pessoaid timestamp direcao alert = do
 
 
 
-postPosicaoR :: SalaId -> Int -> Int -> Handler Value
+postPosicaoR :: SalaId -> Text -> Text -> Handler Value
 postPosicaoR sid posix posiy = do
-  runDB $ Database.Persist.Postgresql.update sid [SalaPosx Database.Persist.Postgresql.=. Just posix]
-  runDB $ Database.Persist.Postgresql.update sid [SalaPosy Database.Persist.Postgresql.=. Just posiy]
+  runDB $ Database.Persist.Postgresql.update sid [SalaPosx Database.Persist.Postgresql.=. posix]
+  runDB $ Database.Persist.Postgresql.update sid [SalaPosy Database.Persist.Postgresql.=. posiy]
   sendStatusJSON ok200 (object[])

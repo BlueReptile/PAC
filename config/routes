@@ -46,4 +46,4 @@
 /json/arduino/atualizaarduino/#Text  UpdateIpR       POST
 /json/arduino/insereregistro/#SalaId/#PessoaId/#UTCTime/#Bool/#Bool InsertRegistroR POST
 
-/json/PosicaoR/#SalaId/#Int/#Int    PosicaoR    POST
+/json/PosicaoR/#SalaId/#Text/#Text    PosicaoR    POST
