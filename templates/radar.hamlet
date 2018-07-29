@@ -4,9 +4,9 @@
 <main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
-  <div .janela onmouseover=drag(this) onmouseout=desfoca(this)>
+  $forall (E.Value salaid, E.Value salaarea, E.Value salanome, E.Value salaposicx, E.Value salaposicy, E.Value arip) <- salaLista
+    <div .janela onmouseover=drag(this) onmouseout=desfoca(this)>
       <center>
-        $forall (E.Value salaid, E.Value salaarea, E.Value salanome, E.Value salaposicx, E.Value salaposicy, E.Value arip) <- salaLista
             <span .windowTitle> #{salanome}
             <!-- id #{}#{} \/abaixo\/-->
             <div ##{fromSqlKey $ salaid}#{salanome}>
