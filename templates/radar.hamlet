@@ -11,10 +11,6 @@
             <!-- id #{}#{} \/abaixo\/-->
             <div ##{fromSqlKey $ salaid}#{salanome}>
             <div .botaoeditar style="display:none;">
-                <a .btn-floating left >
-                    <i .material-icons>zoom_out
-                <a .btn-floating right>
-                    <i .material-icons>zoom_in
             <!-- O motivo do Script ficar aqui é que o Julius aparentemente não itera listas, apenas o hamlet -->
             <script>
                 (function atualiza#{salanome}(){
@@ -77,26 +73,4 @@
                          console.log("Erro: não foi possível atualizar a posicão");
                         }
                     });
-                }
-
-
-
-
-
-
-
-  <!-- janela de debug -->
-  <div .janela onmouseover=drag(this) onmouseout=desfoca(this)>
-    <center>
-        <span .windowTitle> debugz
-            <div .debugclass> vazia
-            <div .botaoeditar style="display:none;">
-                <a .btn-floating left >
-                    <i .material-icons>zoom_out
-                <a .btn-floating right>
-                    <i .material-icons>zoom_in
-            <!-- O motivo do Script ficar aqui é que o Julius aparentemente não itera listas, apenas o hamlet -->
-            <script>
-                function atualizadebugz(){
-                  console.log("oi,me chamo debugz");
                 }
