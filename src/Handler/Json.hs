@@ -66,6 +66,8 @@ postInsertRegistroR salaid pessoaid timestamp direcao alert = do
 
 postPosicaoR :: SalaId -> Text -> Text -> Handler Value
 postPosicaoR sid posix posiy = do
+  addHeader "Access-Control-Allow-Origin" "*"
+  addHeader "Access-Control-Allow-Methods" "PUT, OPTIONS"
   runDB $ Database.Persist.Postgresql.update sid [SalaPosx Database.Persist.Postgresql.=. posix]
   runDB $ Database.Persist.Postgresql.update sid [SalaPosy Database.Persist.Postgresql.=. posiy]
   sendStatusJSON ok200 (object[])

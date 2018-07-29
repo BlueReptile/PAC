@@ -84,8 +84,8 @@ postSalaR = do
         nome <- runInputPost $ ireq textField "sala_nome"
         id <- runInputPost $ ireq intField "id"
         area <- runInputPost $ ireq intField "areaDesignada"
-        let posx = "1px"
-        let posy = "1px"
+        let posx = "100px"
+        let posy = "100px"
         sid <- runDB $ insert $ Sala nome (toSqlKey id) (toSqlKey area) posx posy
         defaultLayout $ do
                 setTitle "ⓅⒶⒸ - Sala"
