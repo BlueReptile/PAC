@@ -84,10 +84,9 @@ postSalaR = do
         nome <- runInputPost $ ireq textField "sala_nome"
         id <- runInputPost $ ireq intField "id"
         area <- runInputPost $ ireq intField "areaDesignada"
-        let posx = (Just 0)
-        let posy = (Just 0)
-        let size = (Just 1)
-        sid <- runDB $ insert $ Sala nome (toSqlKey id) (toSqlKey area) posx posy size
+        let posx = "100px"
+        let posy = "100px"
+        sid <- runDB $ insert $ Sala nome (toSqlKey id) (toSqlKey area) posx posy
         defaultLayout $ do
                 setTitle "ⓅⒶⒸ - Sala"
                 addStylesheet $ (StaticR css_materialize_css)

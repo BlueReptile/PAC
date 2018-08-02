@@ -72,3 +72,12 @@ putInsertRegistroR rid  = do
   post <- requireJsonBody :: Handler Registro
   runDB $ replace rid post
   sendResponseStatus status201 ("UPDATED" :: Text)
+
+
+postPosicaoR :: SalaId -> Text -> Text -> Handler Value
+postPosicaoR sid posix posiy = do
+    addHeader "Access-Control-Allow-Origin" "*"
+    addHeader "Access-Control-Allow-Methods" "PUT, OPTIONS"
+    runDB $ Database.Persist.Postgresql.update sid [SalaPosx Database.Persist.Postgresql.=. posix]
+    runDB $ Database.Persist.Postgresql.update sid [SalaPosy Database.Persist.Postgresql.=. posiy]
+    sendStatusJSON ok200 (object[])

@@ -15,9 +15,8 @@ Sala json
   nome        Text
   arid        ArduinoId
   area        AreaId
-  posx        Int Maybe
-  posy        Int Maybe
-  size        Double Maybe
+  posx        Text
+  posy        Text
   deriving    Show
 
 Arduino json

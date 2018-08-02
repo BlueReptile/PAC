@@ -4,17 +4,13 @@
 <main>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js">
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js">
-  <div .janela onmouseover=drag(this) onmouseout=desfoca(this)>
+  $forall (E.Value salaid, E.Value salaarea, E.Value salanome, E.Value salaposicx, E.Value salaposicy, E.Value arip) <- salaLista
+    <div .janela onmouseover=drag(this) onmouseleave=desfoca#{fromSqlKey $ salaid}(this) style="left: #{salaposicx}; top: #{salaposicy}">
       <center>
-        $forall (E.Value salaid, E.Value salaarea, E.Value salanome, E.Value salaposicx, E.Value salaposicy, E.Value arip) <- salaLista
             <span .windowTitle> #{salanome}
             <!-- id #{}#{} \/abaixo\/-->
             <div ##{fromSqlKey $ salaid}#{salanome}>
             <div .botaoeditar style="display:none;">
-                <a .btn-floating left >
-                    <i .material-icons>zoom_out
-                <a .btn-floating right>
-                    <i .material-icons>zoom_in
             <!-- O motivo do Script ficar aqui é que o Julius aparentemente não itera listas, apenas o hamlet -->
             <script>
                 (function atualiza#{salanome}(){
@@ -51,29 +47,30 @@
                          console.log("complete1")
                       },
                        error: function(data){
-                       alert("error1");
+                         console.log("error1");
                       }
                   });
                 })();
 
-
-
-
-
-
-
-  <!-- janela de debug -->
-  <div .janela onmouseover=drag(this) onmouseout=desfoca(this)>
-    <center>
-        <span .windowTitle> debugz
-            <div .debugclass> vazia
-            <div .botaoeditar style="display:none;">
-                <a .btn-floating left >
-                    <i .material-icons>zoom_out
-                <a .btn-floating right>
-                    <i .material-icons>zoom_in
-            <!-- O motivo do Script ficar aqui é que o Julius aparentemente não itera listas, apenas o hamlet -->
-            <script>
-                function atualizadebugz(){
-                  console.log("oi,me chamo debugz");
+                function desfoca#{fromSqlKey $ salaid}(e){
+                    var listadejanelas = e.getElementsByClassName("botaoeditar");
+                    listadejanelas[0].style.display = "none";
+                    e.style.backgroundColor= "rgba(0,0,255,0)";
+                    e.style.border="4px solid rgba(0,0,255,0)";
+                    var link = "@{HomeR}"+"json/PosicaoR/#{fromSqlKey $ salaid}/"+ e.style.left +"/"+ e.style.top;
+                    console.log("olha o link: "+link);
+                    \$.ajax({
+                        url: link,
+                        method: 'POST',
+                        dataType: 'json',
+                        success: function(data) {
+                           console.log("posicao1");
+                        },
+                        complete: function(data) {
+                           console.log("complete0");
+                        },
+                         error: function(data){
+                         console.log("Erro: não foi possível atualizar a posicão");
+                        }
+                    });
                 }

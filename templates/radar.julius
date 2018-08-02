@@ -6,13 +6,6 @@ function drag(e){
     e.style.border="4px solid #000";
 }
 
-function desfoca(e){
-    var listadejanelas = e.getElementsByClassName("botaoeditar");
-    listadejanelas[0].style.display = "none";
-    e.style.backgroundColor= "rgba(0,0,255,0)";
-    e.style.border="4px solid rgba(0,0,255,0)";
-}
-
 window.onload = function inicAuto(){
     var x = #{rawJS automatico};
     document.getElementById("cbauto").checked = x;

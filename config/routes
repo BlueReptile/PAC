@@ -46,3 +46,4 @@
 /json/arduino/newarduino UpdateIpR      POST
 /json/arduino/updatearduino/#ArduinoId  PutIpR    PUT
 /json/arduino/insereregistro/#RegistroId InsertRegistroR PUT
+/json/PosicaoR/#SalaId/#Text/#Text    PosicaoR    POST
