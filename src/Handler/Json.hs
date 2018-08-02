@@ -54,10 +54,21 @@ getGetSalaIdR ip = do
             _ -> do return Nothing
   sendStatusJSON ok200 (object["salaId" .= salaId])
 
-postUpdateIpR ::  Text -> Handler Value
-postUpdateIpR ip = do
-  Import.undefined
+postUpdateIpR :: Handler Value
+postUpdateIpR = do
+  --post <- requireJsonBody :: Handler Value
+  --runDB $ insert post
+  --sendResponseStatus status201 ("CREATED" :: Text)
+  Prelude.undefined
 
-postInsertRegistroR :: SalaId -> PessoaId -> UTCTime -> Bool -> Bool -> Handler Value
-postInsertRegistroR salaid pessoaid timestamp direcao alert = do
-  Import.undefined
+putPutIpR :: ArduinoId -> Handler Value
+putPutIpR aid = do
+    post <- requireJsonBody :: Handler Arduino
+    runDB $ replace aid post
+    sendResponseStatus status200 ("UPDATED" :: Text)
+
+putInsertRegistroR :: RegistroId -> Handler Value
+putInsertRegistroR rid  = do
+  post <- requireJsonBody :: Handler Registro
+  runDB $ replace rid post
+  sendResponseStatus status201 ("UPDATED" :: Text)

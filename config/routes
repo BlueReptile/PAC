@@ -43,5 +43,6 @@
 
 /json/arduino/findcard/#Text FindCardR       GET
 /json/arduino/getsala/#Text  GetSalaIdR      GET
-/json/arduino/atualizaarduino/#Text  UpdateIpR       POST
-/json/arduino/insereregistro/#SalaId/#PessoaId/#UTCTime/#Bool/#Bool InsertRegistroR POST
+/json/arduino/newarduino UpdateIpR      POST
+/json/arduino/updatearduino/#ArduinoId  PutIpR    PUT
+/json/arduino/insereregistro/#RegistroId InsertRegistroR PUT

@@ -20,12 +20,12 @@ Sala json
   size        Double Maybe
   deriving    Show
 
-Arduino
+Arduino json
   name        Text
   ip          Text
   deriving    Show
 
-Registro
+Registro json
   sala        SalaId
   pessoa      PessoaId
   datahora    UTCTime
