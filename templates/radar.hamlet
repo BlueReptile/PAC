@@ -24,13 +24,13 @@
                       method: 'GET',
                       dataType: 'json',
                       success: function(data) {
-                        var listaDeSalasJson = data.cards.split("&");
-                        for (i = 0; i < listaDeSalasJson.length; ++i) {
-                          var indexstring = listaDeSalasJson[i].toString();
+                        console.log("sucesso");
+                        a = $.each(data.cards, function(index, element) {
+                        console.log(element);
                           e = $.ajax({
                               //aqui fica a parte engraçada <--------------------------------- (arrumar a rota tb)
                               //url: "http://localhost:8080/json/trocaCartaoPorNome/"+indexstring,
-                              url: "@{HomeR}"+"json/trocaCartaoPorNome/"+indexstring,
+                              url: "@{HomeR}"+"json/trocaCartaoPorNome/"+element,
                               method: 'GET',
                               dataType: 'json',
                               success: function(data) {
@@ -41,7 +41,7 @@
                               complete: function(data) { console.log("complete2"); },
                               error: function(data){console.log("error2");}
                           })
-                        };
+                      });
                       },
                       complete: function(data) {
                          console.log("complete1")
