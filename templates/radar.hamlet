@@ -20,11 +20,11 @@
                   console.log("oque tenho dentro ="+e);
                   console.log("arip ="+ "#{arip}");
                   e = $.ajax({
-                      url: "http://#{arip}/sala",
+                      url: "http://#{arip}/class",
                       method: 'GET',
                       dataType: 'json',
                       success: function(data) {
-                        var listaDeSalasJson = data.sala.split("&");
+                        var listaDeSalasJson = data.cards.split("&");
                         for (i = 0; i < listaDeSalasJson.length; ++i) {
                           var indexstring = listaDeSalasJson[i].toString();
                           e = $.ajax({

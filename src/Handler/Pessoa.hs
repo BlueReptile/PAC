@@ -31,7 +31,6 @@ getPessoaR = do
                 _ -> do
                     redirect LoginPageR
     arduinos <- runDB $ selectList [] [Asc ArduinoName]
-    cardid <- httpLBS "http://187.21.121.25:8081/card"
     defaultLayout $ do
         setTitle "ⓅⒶⒸ - Pessoa"
         addStylesheet $ (StaticR css_materialize_css)
