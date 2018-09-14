@@ -52,7 +52,7 @@ getSalaR = do
                      <input value="" name="sala_nome" id="sala_nome" type="text" class="validate">
                      <div class="input-field">
                        <label class="active white-text" for="nivel">Nivel da Sala</label>
-                       <input value="" name="nivel" id="nivel" type="text" class="validate">
+                       <input value="" name="nivel" id="nivel" type="int" class="validate">
 
                     <br>
                      <div class="input-field">
@@ -196,6 +196,9 @@ postEditSalaR = do
                   <div class="input-field">
                      <label class="active white-text" for="sala_nome">Nome da Sala</label>
                      <input value="" name="sala_nome" id="sala_nome" type="text" class="validate">
+                  <div class="input-field">
+                     <label class="active white-text" for="nivel">Nivel de Acesso</label>
+                     <input value="" name="nivel" id="nivel" type="int" class="validate">
                   <label>Arduino</label>
                     <br>
                       <select name="id" >
@@ -226,9 +229,11 @@ postAltSalaR = do
    nome <- runInputPost $ ireq textField "sala_nome"
    arid <- runInputPost $ ireq intField "id"
    area <- runInputPost $ ireq intField "areaDesignada"
+   nivel <- runInputPost $ ireq intField "nivel"
    sid <- runInputPost $ ireq hiddenField "sid"
    --sala <- runDB $ selectList [SalaId ==. sid] []
    runDB $ Database.Persist.Postgresql.update sid [SalaNome Database.Persist.Postgresql.=. nome]
+   runDB $ Database.Persist.Postgresql.update sid [SalaNivel Database.Persist.Postgresql.=. nivel]
    runDB $ Database.Persist.Postgresql.update sid [SalaArid Database.Persist.Postgresql.=. toSqlKey arid]
    runDB $ Database.Persist.Postgresql.update sid [SalaArea Database.Persist.Postgresql.=. toSqlKey area]
    defaultLayout $ do

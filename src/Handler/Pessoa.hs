@@ -54,7 +54,7 @@ getPessoaR = do
                      <input value="" name="pessoa_nome" id="pessoa_nome" type="text" class="validate">
                      <label class="active white-text" for="pessoa_nome">Nome da Pessoa
                      <div class="input-field">
-                       <input value="" name="nivel" id="nivel" type="text" class="validate">
+                       <input value="" name="nivel" id="nivel" type="int" class="validate">
                        <label class="active white-text" for="nivel">Nivel de Acesso
                    <div class="input-field">
                      <input value="" name="pessoa_cpf" id="pessoa_cpf" type="text" class="validate" onkeyup="">
@@ -177,6 +177,9 @@ postEditPessoaR = do
                    <div class="input-field">
                      <input value="" name="pessoa_cpf" id="pessoa_cpf" type="text" class="validate" onkeyup="">
                      <label class="active white-text" for="pessoa_cpf">CPF
+                   <div class="input-field">
+                     <input value="" name="nivel" id="nivel" type="int" class="validate" onkeyup="">
+                     <label class="active white-text" for="nivel">Nivel de Acesso
                    <label class="white-text">Arduino para Escanear o Cartão
                    <br>
                    <select id="arduinoIp" name="arduinoIp">
@@ -206,8 +209,10 @@ postAltPessoaR = do
    cpf <- runInputPost $ ireq textField "pessoa_cpf"
    cartaoID <- runInputPost $ ireq textField "cartaoID"
    pid <- runInputPost $ ireq hiddenField "pid"
+   nivel <- runInputPost $ ireq intField "nivel"
    runDB $ Database.Persist.Postgresql.update pid [PessoaCpf Database.Persist.Postgresql.=. cpf]
    runDB $ Database.Persist.Postgresql.update pid [PessoaCartao Database.Persist.Postgresql.=. cartaoID]
+   runDB $ Database.Persist.Postgresql.update pid [PessoaNivel Database.Persist.Postgresql.=. nivel]
    defaultLayout $ do
            setTitle "ⓅⒶⒸ - Pessoa"
            addStylesheet $ (StaticR css_materialize_css)
