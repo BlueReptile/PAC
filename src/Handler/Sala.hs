@@ -52,7 +52,7 @@ getSalaR = do
                      <input value="" name="sala_nome" id="sala_nome" type="text" class="validate">
                      <div class="input-field">
                        <label class="active white-text" for="nivel">Nivel da Sala</label>
-                       <input value="" name="nivel" id="nivel" type="int" class="validate">
+                       <input value="" name="nivel" id="nivel" type="number" class="validate">
 
                     <br>
                      <div class="input-field">
@@ -198,7 +198,7 @@ postEditSalaR = do
                      <input value="" name="sala_nome" id="sala_nome" type="text" class="validate">
                   <div class="input-field">
                      <label class="active white-text" for="nivel">Nivel de Acesso</label>
-                     <input value="" name="nivel" id="nivel" type="int" class="validate">
+                     <input value="" name="nivel" id="nivel" type="number" class="validate">
                   <label>Arduino</label>
                     <br>
                       <select name="id" >

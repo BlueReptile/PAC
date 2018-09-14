@@ -54,7 +54,7 @@ getPessoaR = do
                      <input value="" name="pessoa_nome" id="pessoa_nome" type="text" class="validate">
                      <label class="active white-text" for="pessoa_nome">Nome da Pessoa
                      <div class="input-field">
-                       <input value="" name="nivel" id="nivel" type="int" class="validate">
+                       <input value="" name="nivel" id="nivel" type="number" class="validate">
                        <label class="active white-text" for="nivel">Nivel de Acesso
                    <div class="input-field">
                      <input value="" name="pessoa_cpf" id="pessoa_cpf" type="text" class="validate" onkeyup="">
@@ -178,7 +178,7 @@ postEditPessoaR = do
                      <input value="" name="pessoa_cpf" id="pessoa_cpf" type="text" class="validate" onkeyup="">
                      <label class="active white-text" for="pessoa_cpf">CPF
                    <div class="input-field">
-                     <input value="" name="nivel" id="nivel" type="int" class="validate" onkeyup="">
+                     <input value="" name="nivel" id="nivel" type="number" class="validate" onkeyup="">
                      <label class="active white-text" for="nivel">Nivel de Acesso
                    <label class="white-text">Arduino para Escanear o Cartão
                    <br>
