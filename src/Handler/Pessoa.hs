@@ -53,6 +53,9 @@ getPessoaR = do
                    <div class="input-field">
                      <input value="" name="pessoa_nome" id="pessoa_nome" type="text" class="validate">
                      <label class="active white-text" for="pessoa_nome">Nome da Pessoa
+                     <div class="input-field">
+                       <input value="" name="nivel" id="nivel" type="text" class="validate">
+                       <label class="active white-text" for="nivel">Nivel de Acesso
                    <div class="input-field">
                      <input value="" name="pessoa_cpf" id="pessoa_cpf" type="text" class="validate" onkeyup="">
                      <label class="active white-text" for="pessoa_cpf">CPF
@@ -85,7 +88,8 @@ postPessoaR = do
         nome <- runInputPost $ ireq textField "pessoa_nome"
         cpf <- runInputPost $ ireq textField "pessoa_cpf"
         cartaoID <- runInputPost $ ireq textField "cartaoID"
-        pid <- runDB $ insert $ Pessoa nome cartaoID cpf
+        nivel <- runInputPost $ ireq intField "nivel"
+        pid <- runDB $ insert $ Pessoa nome cartaoID cpf nivel
         defaultLayout $ do
                 setTitle "ⓅⒶⒸ - Pessoa"
                 addStylesheet $ (StaticR css_materialize_css)

@@ -9,6 +9,7 @@ Pessoa
   cartao      Text
   cpf         Text
   UniqueCartao cartao
+  nivel       Int
   deriving    Show
 
 Sala json
@@ -17,6 +18,7 @@ Sala json
   area        AreaId
   posx        Text
   posy        Text
+  nivel       Int
   deriving    Show
 
 Arduino json

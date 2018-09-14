@@ -50,6 +50,9 @@ getSalaR = do
                    <div class="input-field">
                      <label class="active white-text" for="sala_nome">Nome da Sala</label>
                      <input value="" name="sala_nome" id="sala_nome" type="text" class="validate">
+                     <div class="input-field">
+                       <label class="active white-text" for="nivel">Nivel da Sala</label>
+                       <input value="" name="nivel" id="nivel" type="text" class="validate">
 
                     <br>
                      <div class="input-field">
@@ -84,9 +87,10 @@ postSalaR = do
         nome <- runInputPost $ ireq textField "sala_nome"
         id <- runInputPost $ ireq intField "id"
         area <- runInputPost $ ireq intField "areaDesignada"
+        nivel <- runInputPost $ ireq intField "nivel"
         let posx = "100px"
         let posy = "100px"
-        sid <- runDB $ insert $ Sala nome (toSqlKey id) (toSqlKey area) posx posy
+        sid <- runDB $ insert $ Sala nome (toSqlKey id) (toSqlKey area) posx posy nivel
         defaultLayout $ do
                 setTitle "ⓅⒶⒸ - Sala"
                 addStylesheet $ (StaticR css_materialize_css)

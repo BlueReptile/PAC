@@ -34,9 +34,24 @@ getFindCardR :: Text -> Handler Value
 getFindCardR cid = do
   maybeExiste <- runDB $ getBy $ UniqueCartao cid
   existe <- case maybeExiste of
-            Just (Entity _ resto) -> do return $ Just (pessoaCartao resto)
+            Just (Entity _ resto) -> do return $ Just (pessoaNivel resto)
             _ -> do return Nothing
-  sendStatusJSON ok200 (object["existe" .= existe])
+  sendStatusJSON ok200 (object["acesso" .= existe])
+
+
+getSalaNivelR  :: Text -> Handler Value
+getSalaNivelR  ip = do
+    maybeSalaNivel <- runDB
+                $ E.select
+                $ E.from $ \(sala `E.InnerJoin` arduino) -> do
+                    E.on $ sala ^. SalaArid E.==. arduino ^. ArduinoId
+                    E.where_ (arduino ^. ArduinoIp E.==. E.val ip)
+                    return
+                        ( sala ^. SalaNivel )
+    salaNivel <- case maybeSalaNivel of
+              [E.Value sala] -> do return $ Just sala
+              _ -> do return Nothing
+    sendStatusJSON ok200 (object["nivel" .= salaNivel])
 
 
 
