@@ -4,7 +4,7 @@ Admin
   UniqueLogin login pass
   deriving    Show
 
-Pessoa
+Pessoa json
   nome        Text
   cartao      Text
   cpf         Text
@@ -29,7 +29,7 @@ Arduino json
 Registro json
   sala        SalaId
   pessoa      PessoaId
-  datahora    UTCTime
+  datahora    UTCTime default=now()
   entrada     Bool
   alert       Bool
   deriving    Show

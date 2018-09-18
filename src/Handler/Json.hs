@@ -15,6 +15,7 @@ import Capsula
 import Data.Time.Format
 import qualified Database.Esqueleto      as E
 import           Database.Esqueleto      ((^.))
+import Database.Persist.Class
 
 
 
@@ -69,6 +70,15 @@ getGetSalaIdR ip = do
             _ -> do return Nothing
   sendStatusJSON ok200 (object["salaId" .= salaId])
 
+
+getGetPessoaIdR :: Text -> Handler Value
+getGetPessoaIdR cartaorecebido = do
+  maybeExiste <- runDB $ getBy $ UniqueCartao cartaorecebido
+  existe <- case maybeExiste of
+            Just (Entity personId person) -> do return $ Just personId
+            Nothing -> do return Nothing
+  sendStatusJSON ok200 (object["id" .= existe])
+
 postUpdateIpR :: Handler Value
 postUpdateIpR = do
   --post <- requireJsonBody :: Handler Value
@@ -82,11 +92,11 @@ putPutIpR aid = do
     runDB $ replace aid post
     sendResponseStatus status200 ("UPDATED" :: Text)
 
-putInsertRegistroR :: RegistroId -> Handler Value
-putInsertRegistroR rid  = do
+postInsertRegistroR :: Handler Value
+postInsertRegistroR = do
   post <- requireJsonBody :: Handler Registro
-  runDB $ replace rid post
-  sendResponseStatus status201 ("UPDATED" :: Text)
+  _    <- runDB $ insert post
+  sendResponseStatus status201 ("CREATED" :: Text)
 
 
 postPosicaoR :: SalaId -> Text -> Text -> Handler Value
