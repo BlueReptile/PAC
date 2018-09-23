@@ -55,26 +55,31 @@ getRegistroR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         toWidget $[whamlet|
-                <main>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>
-                                    Registros
-                                <th>
-                        <tbody>
-                            $forall (E.Value registroid, E.Value nomesala, E.Value datahora, E.Value direcao, E.Value alert, E.Value nomepessoa) <- registros
-                                <tr>
-                                 <li class="divider"></li>
-                                    <td>
-                                        <a href=@{HomeR}>
-                                            <h5>
-                                                #{nomesala}
-                                            #{nomepessoa}
-                                            #{formatePraMim $ datahora}
-                                            #{direcao}
-                                            #{alert}
-                                        <li class="divider"></li>
+                    <main>
+                        <ul class="collection with-header">
+                            <li class="collection-header"><h4>Registros</h4>
+                             $forall (E.Value registroid, E.Value nomesala, E.Value datahora, E.Value direcao, E.Value alert, E.Value nomepessoa) <- registros
+                              $if (alert /= True) && (direcao == True)
+                               <li class="collection-item avatar indigo darken-3 valign-wrapper z-depth-3">
+                                  <i class="material-icons teal circle fa fa-sign-in z-depth-3">
+                                <span class="title white-text sombra">#{nomesala}
+                                  <p class="white-text">
+                                    #{nomepessoa}
+                                    #{formatePraMim $ datahora}
+                              $if (alert /= True) && (direcao == False)
+                               <li class="collection-item avatar indigo darken-3 valign-wrapper z-depth-3">
+                                  <i class="material-icons red circle fa fa-sign-out z-depth-3">
+                                <span class="title white-text sombra">#{nomesala}
+                                  <p class="white-text">
+                                    #{nomepessoa}
+                                    #{formatePraMim $ datahora}
+                              $if (alert == True)
+                               <li class="collection-item avatar red darken-4 valign-wrapper z-depth-3">
+                                  <i class="material-icons red circle z-depth-3">do_not_disturb
+                                <span class="title white-text sombra">#{nomesala}
+                                  <p class="white-text">
+                                    #{nomepessoa}
+                                    #{formatePraMim $ datahora}
         |]
         $(whamletFile "templates/footer.hamlet")
 

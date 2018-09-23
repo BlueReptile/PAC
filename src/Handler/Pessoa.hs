@@ -143,7 +143,6 @@ getPessoaPerfilR pid = do
                      <i class="material-icons right">send</i>
         |]
         $(whamletFile "templates/footer.hamlet")
-        $(whamletFile "templates/footer.hamlet")
 
 postEditPessoaR :: Handler Html
 postEditPessoaR = do
