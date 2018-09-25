@@ -10,7 +10,7 @@
               <li class="waves-effect"><a href=" @{RadarIndiceR (ordemcampo + 1) automatico} "><i class="material-icons">chevron_right</i></a></li>
               <p>
               <input type="checkbox" id="cbauto" class="filled-in" onchange="inicAuto2()"/>
-              <label for="cbauto" style="font color='white'">Automático
+              <label for="cbauto" class="white-text">Automático
 
           <div class="footer-copyright light-blue darken-3 white-text">
             <div class="container">
