@@ -255,22 +255,17 @@ getListaPessoaR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
-                <main>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>
-                                    Pessoas
-                                <th>
-                        <tbody>
-                            $forall (Entity pid pessoa) <- pessoas
-                                <tr>
-                                 <li class="divider"></li>
-                                    <td>
-                                        <a href=@{PessoaPerfilR pid}>
-                                            #{pessoaNome pessoa}
-                                    <td>
-                                        <form action=@{PessoaPerfilR pid} method=post>
-                                            <input class="btn waves-effect waves-light" type="submit" value="Apagar">
+         <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+          <div class="col s12">
+             <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+             <a href="@{ListaPessoaR}" class="breadcrumb"><u>Pessoa</u>
+             <a class="breadcrumb">Lista de Pessoas
+         <main>
+          <ul class="collection">
+            $forall (Entity pid pessoa) <- pessoas
+              <li class="collection-item">
+                <form action=@{PessoaPerfilR pid} method=post class="right">
+                  <input class="btn waves-effect waves-light" type="submit" value="Apagar">
+               <a href=@{PessoaPerfilR pid}><h5>#{pessoaNome pessoa}<h5>
         |]
         $(whamletFile "templates/footer.hamlet")

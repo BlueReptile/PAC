@@ -227,24 +227,18 @@ getListaAdminR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
-                <main>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>
-                                    Admins
-                                <th>
-                        <tbody>
-                            $forall (Entity aid admin) <- admins
-                                <tr>
-                                 <li class="divider"></li>
-                                    <td>
-                                        <a href=@{ADMPerfilR aid}>
-                                            #{adminLogin admin}
-                                    <td>
-                                      $if (qtadmins >= 2)
-                                        <form action=@{ADMPerfilR aid} method=post>
-                                            <input class="btn waves-effect waves-light" type="submit" value="Apagar">
-                                    <li class="divider"></li>
+        <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+          <div class="col s12">
+             <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+             <a href="@{ListaAdminR}" class="breadcrumb"><u>Admins</u>
+             <a class="breadcrumb">Lista de Admins
+        <main>
+         <ul class="collection">
+           $forall (Entity aid admin) <- admins
+             <li class="collection-item">
+              $if (qtadmins >= 2)
+               <form action=@{ADMPerfilR aid} class="right" method=post>
+                <input class="btn right waves-effect waves-light" type="submit" value="Apagar">
+              <a href=@{ADMPerfilR aid}><h5>#{adminLogin admin}</h5>
         |]
         $(whamletFile "templates/footer.hamlet")

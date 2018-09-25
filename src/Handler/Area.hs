@@ -102,23 +102,18 @@ getListaAreaR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
-                <main>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>
-                                    Areas
-                                <th>
-                        <tbody>
-                            $forall (Entity aid area) <- areas
-                                <tr>
-                                 <li class="divider"></li>
-                                    <td>
-                                        <a href=@{AreaPerfilR aid}>
-                                            #{areaNome area}
-                                    <td>
-                                        <form action=@{AreaPerfilR aid} method=post>
-                                            <input class="btn waves-effect waves-light" type="submit" value="Apagar">
+        <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+          <div class="col s12">
+             <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+             <a href="@{ListaAreaR}" class="breadcrumb"><u>Areas</u>
+             <a class="breadcrumb">Lista de Areas
+        <main>
+         <ul class="collection">
+          $forall (Entity aid area) <- areas
+             <li class="collection-item">
+                <form action=@{AreaPerfilR aid} method=post class="right">
+                  <input class="btn waves-effect waves-light" type="submit" value="Apagar">
+              <a href=@{AreaPerfilR aid}><h5>#{areaNome area}<h5>
         |]
         $(whamletFile "templates/footer.hamlet")
 
