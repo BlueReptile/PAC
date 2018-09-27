@@ -55,9 +55,12 @@ getRegistroR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         toWidget $[whamlet|
-                    <main>
-                        <ul class="collection with-header">
-                            <li class="collection-header"><h4>Registros</h4>
+        <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+         <div class="col s12">
+            <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+            <a href="@{RegistroR}" class="breadcrumb"><u>Registros</u>
+        <main>
+                    <ul class="collection">
                              $forall (E.Value registroid, E.Value nomesala, E.Value datahora, E.Value direcao, E.Value alert, E.Value nomepessoa) <- registros
                               $if (alert /= True) && (direcao == True)
                                <li class="collection-item avatar indigo darken-3 valign-wrapper z-depth-3">
@@ -67,7 +70,7 @@ getRegistroR = do
                                     #{nomepessoa}
                                     #{formatePraMim $ datahora}
                               $if (alert /= True) && (direcao == False)
-                               <li class="collection-item avatar indigo darken-3 valign-wrapper z-depth-3">
+                               <li class="collection-item avatar light-blue darken-3 valign-wrapper z-depth-3">
                                   <i class="material-icons red circle fa fa-sign-out z-depth-3">
                                 <span class="title white-text sombra">#{nomesala}
                                   <p class="white-text">

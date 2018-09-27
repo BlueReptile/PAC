@@ -279,22 +279,17 @@ getListaSalaR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
-                <main>
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>
-                                    Salas
-                                <th>
-                        <tbody>
-                            $forall (Entity sid sala) <- salas
-                                <tr>
-                                 <li class="divider"></li>
-                                    <td>
-                                        <a href=@{SalaPerfilR sid}>
-                                            #{salaNome sala}
-                                    <td>
-                                        <form action=@{SalaPerfilR sid} method=post>
-                                            <input class="btn waves-effect waves-light" type="submit" value="Apagar">
+        <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+         <div class="col s12">
+            <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+            <a href="@{ListaSalaR}" class="breadcrumb"><u>Sala</u>
+            <a class="breadcrumb">Lista de Salas
+        <main>
+         <ul class="collection">
+            $forall (Entity sid sala) <- salas
+             <li class="collection-item">
+               <form action=@{SalaPerfilR sid} method=post class="right">
+                 <input class="btn waves-effect waves-light" type="submit" value="Apagar">
+              <a href=@{SalaPerfilR sid}><h5>#{salaNome sala}<h5>
         |]
         $(whamletFile "templates/footer.hamlet")
