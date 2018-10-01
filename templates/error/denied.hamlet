@@ -1,3 +1,18 @@
+<div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+  <div class="col s12">
+    <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+    <a class="breadcrumb"><u>Erro</u>
 <main>
-  <h3> Permissão Negada, acho que vocẽ não é um admin.
-  <img src=@{StaticR thinking_gif} alt="Pensando" class="center" style="width:400px;height:400px;">
+  <div class="row">
+    <div class="col s3 m5">
+      <img src=@{StaticR sirene_gif} alt="sirene" style="height:60vh;width:auto;">
+    <div class="col s9 m7 center">
+      <div class="card speech-bubble">
+        <div class="card-content white-text sombra1">
+          <span class="card-title sombra2">
+            <h3>Permissão Negada
+          <hr class="teal-text">
+          <p>
+            Você não tem permissão de Admin para acessar esta página.
+          <p>
+            "Tá tentando me derrubar?!"

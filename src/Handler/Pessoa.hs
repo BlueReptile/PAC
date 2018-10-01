@@ -42,7 +42,11 @@ getPessoaR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
-        <br>
+        <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+         <div class="col s12">
+            <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+            <a href="@{ListaPessoaR}" class="breadcrumb"><u>Pessoa</u>
+            <a class="breadcrumb">Cadastro
         <main>
          <div class="row">
           <div class="col s6 offset-s3 valign">
@@ -99,8 +103,23 @@ postPessoaR = do
                 toWidget $(luciusFile "templates/admin.lucius")
                 $(whamletFile "templates/header.hamlet")
                 [whamlet|
-                 <main>
-                    Pessoa #{nome} inserida com sucesso!
+                <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+                 <div class="col s12">
+                    <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+                    <a href="@{ListaPessoaR}" class="breadcrumb"><u>Pessoa</u>
+                    <a class="breadcrumb">Cadastro
+                <main>
+                   <div class="row">
+                     <div class="col s3 m3">
+                       <img class="center" src=@{StaticR haskellchan_render_png} alt="Haskell-chan" style="height:60vh;width:auto;">
+                     <div class="col s9 m9 center">
+                       <div class="card speech-bubble">
+                         <div class="card-content white-text sombra1">
+                           <span class="card-title sombra2">
+                             <h3>Operação Concluída!
+                           <hr class="teal-text">
+                           <p>
+                             Pessoa #{nome} inserida com sucesso no sistema!
                 |]
                 $(whamletFile "templates/footer.hamlet")
 
@@ -123,6 +142,11 @@ getPessoaPerfilR pid = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
+         <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+                 <div class="col s12">
+                    <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+                    <a href="@{ListaPessoaR}" class="breadcrumb"><u>Pessoa</u>
+                    <a class="breadcrumb">#{pessoaNome pessoa}
          <main>
           <br>
            <br>
@@ -166,6 +190,11 @@ postEditPessoaR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
+        <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+                <div class="col s12">
+                   <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+                   <a href="@{ListaPessoaR}" class="breadcrumb"><u>Pessoa</u>
+                   <a class="breadcrumb">Editar
         <main>
          <div class="row">
           <div class="col s6 offset-s3 valign">
@@ -221,8 +250,23 @@ postAltPessoaR = do
            toWidget $(luciusFile "templates/admin.lucius")
            $(whamletFile "templates/header.hamlet")
            [whamlet|
+            <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+                   <div class="col s12">
+                      <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+                      <a href="@{ListaPessoaR}" class="breadcrumb"><u>Pessoa</u>
+                      <a class="breadcrumb">Alterar pessoa
             <main>
-               Pessoa Atualizada com Sucesso
+               <div class="row">
+                 <div class="col s3 m3">
+                   <img class="center" src=@{StaticR haskellchan_render_png} alt="Haskell-chan" style="height:60vh;width:auto;">
+                 <div class="col s9 m9 center">
+                   <div class="card speech-bubble">
+                     <div class="card-content white-text sombra1">
+                       <span class="card-title sombra2">
+                         <h3>Operação Concluída!
+                       <hr class="teal-text">
+                       <p>
+                         Pessoa alterada com sucesso!
            |]
            $(whamletFile "templates/footer.hamlet")
 

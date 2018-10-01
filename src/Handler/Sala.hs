@@ -39,7 +39,11 @@ getSalaR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
-        <br>
+        <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+          <div class="col s12">
+            <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+            <a href="@{ListaSalaR}" class="breadcrumb"><u>Salas</u>
+            <a class="breadcrumb">Cadastro
         <main>
          <div class="row">
           <div class="col s6 offset-s3 valign">
@@ -100,8 +104,23 @@ postSalaR = do
                 toWidget $(luciusFile "templates/admin.lucius")
                 $(whamletFile "templates/header.hamlet")
                 [whamlet|
-                 <main>
-                    Sala #{nome} inserida com sucesso!
+                 <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+                  <div class="col s12">
+                    <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+                    <a href="@{ListaSalaR}" class="breadcrumb"><u>Salas</u>
+                    <a class="breadcrumb">Cadastro
+                    <main>
+                       <div class="row">
+                         <div class="col s3 m3">
+                           <img class="center" src=@{StaticR haskellchan_render_png} alt="Haskell-chan" style="height:60vh;width:auto;">
+                         <div class="col s9 m9 center">
+                           <div class="card speech-bubble">
+                             <div class="card-content white-text sombra1">
+                               <span class="card-title sombra2">
+                                 <h3>Operação Concluída!
+                               <hr class="teal-text">
+                               <p>
+                                 Sala #{nome} inserida com sucesso no sistema!
                 |]
                 $(whamletFile "templates/footer.hamlet")
 
@@ -135,6 +154,13 @@ getSalaPerfilR sid = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
+         <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+          <div class="col s12">
+           <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+           <a href="@{ListaSalaR}" class="breadcrumb"><u>Salas</u>
+           $forall (E.Value idsala, E.Value sala, E.Value arduino, E.Value area) <- salainfo
+             $if idsala == sid
+               <a class="breadcrumb">#{sala}
          <main>
           <br>
            <br>
@@ -181,6 +207,11 @@ postEditSalaR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
+         <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+           <div class="col s12">
+             <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+             <a href="@{ListaSalaR}" class="breadcrumb"><u>Salas</u>
+             <a class="breadcrumb">Editar
          <main>
           <br>
            <br>
@@ -245,8 +276,23 @@ postAltSalaR = do
            toWidget $(luciusFile "templates/admin.lucius")
            $(whamletFile "templates/header.hamlet")
            [whamlet|
+            <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+              <div class="col s12">
+                <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+                <a href="@{ListaSalaR}" class="breadcrumb"><u>Salas</u>
+                <a class="breadcrumb">Editar
             <main>
-               Sala Atualizada com Sucesso
+                   <div class="row">
+                     <div class="col s3 m3">
+                       <img class="center" src=@{StaticR haskellchan_render_png} alt="Haskell-chan" style="height:60vh;width:auto;">
+                     <div class="col s9 m9 center">
+                       <div class="card speech-bubble">
+                         <div class="card-content white-text sombra1">
+                           <span class="card-title sombra2">
+                             <h3>Operação Concluída!
+                           <hr class="teal-text">
+                           <p>
+                             Sala alterada com sucesso!
            |]
            $(whamletFile "templates/footer.hamlet")
 

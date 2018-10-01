@@ -26,7 +26,7 @@ getRadarR = do
                 (Just id) -> do
                     return id
                 _ ->
-                    return ""
+                    redirect LoginPageR
     areaUm <- runDB $ selectList [AreaOrdem ==. 1] [Asc AreaOrdem]
     pegaareaUm <- case (safeHead(areaUm)) of
                     Just (Entity _ resto) -> do redirect (RadarIndiceR 1 ("false"))
@@ -41,6 +41,10 @@ getRadarR = do
         toWidget $(luciusFile "templates/home.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
+          <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+          <div class="col s12">
+            <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+            <a class="breadcrumb">Radar
           <main>
             <h1>
               Radar não conseguiu encontrar uma área para mostrar

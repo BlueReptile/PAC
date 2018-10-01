@@ -39,7 +39,11 @@ getAdminR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
-        <br>
+        <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+          <div class="col s12">
+            <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+            <a href="@{ListaAdminR}" class="breadcrumb"><u>Admins</u>
+            <a class="breadcrumb">Cadastro
         <main>
          <div class="row">
           <div class="col s6 offset-s3 valign">
@@ -76,8 +80,23 @@ postAdminR = do
                 toWidget $(luciusFile "templates/admin.lucius")
                 $(whamletFile "templates/header.hamlet")
                 [whamlet|
-                 <main>
-                    Admin #{fromSqlKey aid} inserido com sucesso!
+                <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+                  <div class="col s12">
+                    <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+                    <a href="@{ListaAdminR}" class="breadcrumb"><u>Admins</u>
+                    <a class="breadcrumb"><u>Cadastro</u>
+                <main>
+                   <div class="row">
+                     <div class="col s3 m3">
+                       <img class="center" src=@{StaticR haskellchan_render_png} alt="Haskell-chan" style="height:60vh;width:auto;">
+                     <div class="col s9 m9 center">
+                       <div class="card speech-bubble">
+                         <div class="card-content white-text sombra1">
+                           <span class="card-title sombra2">
+                             <h3>Operação Concluída!
+                           <hr class="teal-text">
+                           <p>
+                             Administrador #{fromSqlKey aid} inserido com sucesso no sistema!
                 |]
                 $(whamletFile "templates/footer.hamlet")
         _ -> redirect HomeR
@@ -101,6 +120,11 @@ getADMPerfilR aid = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
+         <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+           <div class="col s12">
+             <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+             <a href="@{ListaAdminR}" class="breadcrumb"><u>Admins</u>
+             <a class="breadcrumb">#{adminLogin admin}
          <main>
           <br>
            <br>
@@ -144,6 +168,11 @@ postEditAdminR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
+         <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+           <div class="col s12">
+             <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+             <a href="@{ListaAdminR}" class="breadcrumb"><u>Admins</u>
+             <a class="breadcrumb">Editar
          <main>
           <br>
            <br>
@@ -190,8 +219,23 @@ postAltAdminR = do
            toWidget $(luciusFile "templates/admin.lucius")
            $(whamletFile "templates/header.hamlet")
            [whamlet|
+            <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+             <div class="col s12">
+               <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+               <a href="@{ListaAdminR}" class="breadcrumb"><u>Admins</u>
+               <a class="breadcrumb">Alterar senha
             <main>
-               Senha Atualizada com Sucesso
+               <div class="row">
+                 <div class="col s3 m3">
+                   <img class="center" src=@{StaticR haskellchan_render_png} alt="Haskell-chan" style="height:60vh;width:auto;">
+                 <div class="col s9 m9 center">
+                   <div class="card speech-bubble">
+                     <div class="card-content white-text sombra1">
+                       <span class="card-title sombra2">
+                         <h3>Operação Concluída!
+                       <hr class="teal-text">
+                       <p>
+                         Senha alterada com sucesso!
            |]
            $(whamletFile "templates/footer.hamlet")
 

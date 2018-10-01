@@ -1,3 +1,18 @@
+<div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+  <div class="col s12">
+    <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+    <a class="breadcrumb"><u>Erro</u>
 <main>
-  <h3> Erro ao inserir no banco de dados: 6 lados não são o suficiente,tente novamente e verifique os campos.
-  <img src=@{StaticR thinking_gif} alt="Pensando" class="center" style="width:400px;height:400px;">
+  <div class="row">
+    <div class="col s3 m5">
+      <img src=@{StaticR banco_png} alt="Banco de dados" style="height:60vh;width:auto;">
+    <div class="col s9 m7 center">
+      <div class="card speech-bubble">
+        <div class="card-content white-text sombra1">
+          <span class="card-title sombra2">
+            <h3>Erro ao inserir no Banco de Dados
+          <hr class="teal-text">
+          <p>
+            Verifique os campos e tente novamente.
+          <p>
+            "Parece que seis lados não são o suficiente para estes dados."

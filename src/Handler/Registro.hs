@@ -58,7 +58,7 @@ getRegistroR = do
         <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
          <div class="col s12">
             <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
-            <a href="@{RegistroR}" class="breadcrumb"><u>Registros</u>
+            <a class="breadcrumb">Registros
         <main>
                     <ul class="collection">
                              $forall (E.Value registroid, E.Value nomesala, E.Value datahora, E.Value direcao, E.Value alert, E.Value nomepessoa) <- registros

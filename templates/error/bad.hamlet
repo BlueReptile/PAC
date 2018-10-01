@@ -1,3 +1,18 @@
+<div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+  <div class="col s12">
+    <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+    <a class="breadcrumb"><u>Erro</u>
 <main>
-  <h3> Método inválido: você quis GET mas só tenho POST. Pega esse POST ai.
-  <img src=@{StaticR poste_jpg} alt="Poste" class="center" style="width:400px;height:400px;">
+  <div class="row">
+    <div class="col s3 m5">
+      <img src=@{StaticR poste_jpg} alt="Poste" style="height:60vh;width:auto;">
+    <div class="col s9 m7 center">
+      <div class="card speech-bubble">
+        <div class="card-content white-text sombra1">
+          <span class="card-title sombra2">
+            <h3>Método Inválido
+          <hr class="teal-text">
+          <p>
+            Você tentou acessar uma página POST com o método GET.
+          <p>
+            "Enquanto não consegue, pega esse POST aqui."

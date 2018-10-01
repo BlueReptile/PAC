@@ -1,2 +1,32 @@
+<div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+  <div class="col s12">
+     <a class="breadcrumb"><u>Home</u>
 <main>
-  <img src=@{StaticR haskellchan_render_png} alt="Haskell-chan" class="center" style="width:204px;height:442px;">
+  $if idText /= ""
+    <div class="row">
+      <div class="col s3 m3">
+        <img class="center" src=@{StaticR haskellchan_render_png} alt="Haskell-chan" style="height:60vh;width:auto;">
+      <div class="col s9 m9 center">
+        <div class="card speech-bubble">
+          <div class="card-content white-text sombra1">
+            <span class="card-title sombra2">
+              <h3>PAC
+            <p>
+              Bem vindo(a) ao web-app de gerenciamento do Projeto de Automação de Controle.
+            <hr class="teal-text">
+              <p class="green-text text-accent-3 sombra3">
+                Para começar a monitorar as áreas, acesse o Radar.
+  $else
+    <div class="row">
+      <div class="col s3 m3">
+        <img class="center" src=@{StaticR haskellchan_render_png} alt="Haskell-chan" style="height:60vh;width:auto;">
+      <div class="col s9 m9 center">
+        <div class="card speech-bubble">
+          <div class="card-content white-text sombra1">
+            <span class="card-title sombra2">
+              <h3>PAC
+            <p>
+              Bem vindo(a) ao web-app de gerenciamento do Projeto de Automação de Controle.
+            <hr class="teal-text">
+              <p class="green-text text-accent-3 sombra3">
+                Para começar, prossiga com o login!

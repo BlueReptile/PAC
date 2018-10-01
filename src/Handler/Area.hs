@@ -40,13 +40,17 @@ getAreaR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
-        <br>
+        <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+          <div class="col s12">
+            <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+            <a href="@{ListaAreaR}" class="breadcrumb"><u>Áreas</u>
+            <a class="breadcrumb">Cadastro
         <main>
          <div class="row">
           <div class="col s6 offset-s3 valign">
             <div class="card blue-grey darken-1">
               <div class="card-content white-text">
-                <span class="card-title">Cadastro de Area</span>
+                <span class="card-title">Cadastro de Área</span>
                   <form action=@{AreaR} method=post enctype=#{enctype}>
                     ^{widget}
                     <button class="btn waves-effect waves-light" type="submit" name="action">Cadastrar
@@ -77,8 +81,23 @@ postAreaR = do
                 toWidget $(luciusFile "templates/admin.lucius")
                 $(whamletFile "templates/header.hamlet")
                 [whamlet|
-                 <main>
-                    Area #{fromSqlKey areaid} inserida com sucesso!
+                <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+                  <div class="col s12">
+                    <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+                    <a href="@{ListaAreaR}" class="breadcrumb"><u>Áreas</u>
+                    <a class="breadcrumb">Cadastro
+                <main>
+                   <div class="row">
+                     <div class="col s3 m3">
+                       <img class="center" src=@{StaticR haskellchan_render_png} alt="Haskell-chan" style="height:60vh;width:auto;">
+                     <div class="col s9 m9 center">
+                       <div class="card speech-bubble">
+                         <div class="card-content white-text sombra1">
+                           <span class="card-title sombra2">
+                             <h3>Operação Concluída!
+                           <hr class="teal-text">
+                           <p>
+                             Área #{fromSqlKey areaid} inserida com sucesso no sistema!
                 |]
                 $(whamletFile "templates/footer.hamlet")
         _ -> redirect HomeR
@@ -105,8 +124,8 @@ getListaAreaR = do
         <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
           <div class="col s12">
              <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
-             <a href="@{ListaAreaR}" class="breadcrumb"><u>Areas</u>
-             <a class="breadcrumb">Lista de Areas
+             <a href="@{ListaAreaR}" class="breadcrumb"><u>Áreas</u>
+             <a class="breadcrumb">Lista de Áreas
         <main>
          <ul class="collection">
           $forall (Entity aid area) <- areas
@@ -136,6 +155,11 @@ getAreaPerfilR aid = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
+        <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+          <div class="col s12">
+            <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+            <a href="@{ListaAreaR}" class="breadcrumb"><u>Áreas</u>
+            <a class="breadcrumb">#{areaNome area}
         <main>
           <br>
            <br>
@@ -175,6 +199,11 @@ postEditAreaR = do
         toWidget $(luciusFile "templates/admin.lucius")
         $(whamletFile "templates/header.hamlet")
         [whamlet|
+         <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+           <div class="col s12">
+             <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+             <a href="@{ListaAreaR}" class="breadcrumb"><u>Áreas</u>
+             <a class="breadcrumb">Editar
          <main>
           <br>
            <br>
@@ -185,15 +214,15 @@ postEditAreaR = do
                  <div class="card-content white-text">
                   <span class="card-title">AREA</span>
                   <br>
-                  <p> Editar Area
+                  <p> Editar Área
                   <br>
                   <div class="input-field">
                    <input type="hidden" id="aid" name="aid" value=#{fromSqlKey aid}>
                    <input id="link" name="link" type="text" class="validate">
-                   <label class="white-text" for="link">Link da Area</label>
+                   <label class="white-text" for="link">Link da Área</label>
                   <div class="input-field">
                    <input id="seq" name="seq" type="number" class="validate">
-                   <label class="white-text" for="link">Sequencia da Area</label>
+                   <label class="white-text" for="link">Sequencia da Área</label>
                  <br>
                  <div class="card-action">
                    <button class="btn waves-effect waves-light" type="submit" name="action">Editar
@@ -225,8 +254,23 @@ postAltAreaR = do
            toWidget $(luciusFile "templates/admin.lucius")
            $(whamletFile "templates/header.hamlet")
            [whamlet|
-            <main>
-               Area Atualizada com Sucesso
+           <div class="indigo z-depth-3" style="text-shadow: 1px 1px gray; padding: 10px">
+             <div class="col s12">
+               <a href="@{HomeR}" class="breadcrumb"><u>Home</u>
+               <a href="@{ListaAreaR}" class="breadcrumb"><u>Áreas</u>
+               <a class="breadcrumb">Editar
+           <main>
+              <div class="row">
+                <div class="col s3 m3">
+                  <img class="center" src=@{StaticR haskellchan_render_png} alt="Haskell-chan" style="height:60vh;width:auto;">
+                <div class="col s9 m9 center">
+                  <div class="card speech-bubble">
+                    <div class="card-content white-text sombra1">
+                      <span class="card-title sombra2">
+                        <h3>Operação Concluída!
+                      <hr class="teal-text">
+                      <p>
+                        Área alterada com sucesso!
            |]
            $(whamletFile "templates/footer.hamlet")
 
