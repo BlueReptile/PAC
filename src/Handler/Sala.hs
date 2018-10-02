@@ -236,11 +236,12 @@ postEditSalaR = do
                         <option value="" disabled selected>Qual Arduino?</option>
                         $forall (Entity arid arduino) <- arduinos
                           <option value="#{fromSqlKey $ arid}">#{arduinoName arduino}</option>
-                      <label>Area designada</label>
-                      <select id="areaDesignada" name="areaDesignada">
-                         <option value="" disabled selected>Qual Area?</option>
-                         $forall (Entity areaid restoarea) <- areas
-                           <option value="#{fromSqlKey $ areaid}">#{areaNome restoarea}</option>
+                  <label>Area designada</label>
+                       <br>
+                        <select id="areaDesignada" name="areaDesignada">
+                          <option value="" disabled selected>Qual Area?</option>
+                           $forall (Entity areaid restoarea) <- areas
+                            <option value="#{fromSqlKey $ areaid}">#{areaNome restoarea}</option>
                  <br>
                  <div class="card-action">
                    <input type="hidden" id="sid" name="sid" value=#{fromSqlKey sid}>
