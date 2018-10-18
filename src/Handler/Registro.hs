@@ -35,6 +35,7 @@ getRegistroR = do
                 $ E.from $ \(registro `E.InnerJoin` sala `E.InnerJoin` pessoa) -> do
                     E.on $ registro ^. RegistroPessoa E.==. pessoa ^. PessoaId
                     E.on $ registro ^. RegistroSala E.==. sala ^. SalaId
+                    E.orderBy [E.desc (registro ^. RegistroId)]
                     return
                         ( registro ^. RegistroId
                         , sala  ^. SalaNome

@@ -167,9 +167,9 @@ getAreaPerfilR aid = do
               <div class="col s6 offset-s3 valign">
                <div class="card blue-grey darken-1">
                 <div class="card-content white-text">
-                 <span class="card-title">ADMIN</span>
+                 <span class="card-title">Area</span>
                  <br>
-                 <p> AREA #{areaNome area}
+                 <p> Area: #{areaNome area}
                  <p> link do mapa: #{areaMapa area}
                 <br>
                 <div class="card-action">
