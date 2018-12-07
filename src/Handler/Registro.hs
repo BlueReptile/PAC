@@ -7,6 +7,7 @@
 module Handler.Registro where
 
 import Import
+import Data.Time.LocalTime
 import Database.Persist.Postgresql
 --import Network.HTTP.Types.Status
 import Text.Lucius
@@ -30,6 +31,7 @@ getRegistroR = do
             _ -> do
                 redirect LoginPageR
 
+    zone <- liftIO getCurrentTimeZone
     registros <- runDB
                 $ E.select
                 $ E.from $ \(registro `E.InnerJoin` sala `E.InnerJoin` pessoa) -> do
@@ -69,23 +71,23 @@ getRegistroR = do
                                 <span class="title white-text sombra">#{nomesala}
                                   <p class="white-text">
                                     #{nomepessoa}
-                                    #{formatePraMim $ datahora}
+                                    #{formatePraMim zone datahora}
                               $if (alert /= True) && (direcao == False)
                                <li class="collection-item avatar light-blue darken-3 valign-wrapper z-depth-3">
                                   <i class="material-icons red circle fa fa-sign-out z-depth-3">
                                 <span class="title white-text sombra">#{nomesala}
                                   <p class="white-text">
                                     #{nomepessoa}
-                                    #{formatePraMim $ datahora}
+                                    #{formatePraMim zone datahora}
                               $if (alert == True)
                                <li class="collection-item avatar red darken-4 valign-wrapper z-depth-3">
                                   <i class="material-icons red circle z-depth-3">do_not_disturb
                                 <span class="title white-text sombra">#{nomesala}
                                   <p class="white-text">
                                     #{nomepessoa}
-                                    #{formatePraMim $ datahora}
+                                    #{formatePraMim zone datahora}
         |]
         $(whamletFile "templates/footer.hamlet")
 
-formatePraMim :: UTCTime -> String
-formatePraMim a = Prelude.unwords $ Prelude.tail $ Prelude.reverse $ Prelude.words $ show a
+formatePraMim :: TimeZone -> UTCTime -> String
+formatePraMim zone agora = show (utcToLocalTime zone agora)

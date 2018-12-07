@@ -49,3 +49,4 @@
 /json/arduino/insereregistro InsertRegistroR POST
 /json/PosicaoR/#SalaId/#Text/#Text    PosicaoR    POST
 /json/arduino/salanivel/#Text         SalaNivelR   GET
+/json/arduino/datahora         DataHoraR   GET

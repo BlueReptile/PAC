@@ -13,6 +13,7 @@ import Database.Persist.Postgresql
 import Network.HTTP.Types.Status
 import Capsula
 import Data.Time.Format
+import Data.Time
 import qualified Database.Esqueleto      as E
 import           Database.Esqueleto      ((^.))
 import Database.Persist.Class
@@ -106,3 +107,9 @@ postPosicaoR sid posix posiy = do
     runDB $ Database.Persist.Postgresql.update sid [SalaPosx Database.Persist.Postgresql.=. posix]
     runDB $ Database.Persist.Postgresql.update sid [SalaPosy Database.Persist.Postgresql.=. posiy]
     sendStatusJSON ok200 (object[])
+
+
+getDataHoraR :: Handler Value
+getDataHoraR = do
+  datahora <- liftIO getZonedTime
+  sendStatusJSON ok200 (object["datetime" .= datahora])
